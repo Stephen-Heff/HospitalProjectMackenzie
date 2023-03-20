@@ -11,8 +11,8 @@ namespace HospitalProjectMackenzie.Models
         public string PatientFirstName { get; set; }
         public string PatientLastName { get; set; }
         public string PatientAddress { get; set; }
-        public int PatientDateOfBirth { get; set; }
-        public int PatientCellPhone { get; set; }
+        public string PatientDateOfBirth { get; set; }
+        public string PatientCellPhone { get; set; }
 
     }
 }
