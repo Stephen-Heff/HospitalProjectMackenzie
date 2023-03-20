@@ -29,6 +29,8 @@ namespace HospitalProjectMackenzie.Models
 
         public DbSet<Patient> Patients { get; set; }
         public DbSet<Appointment> Appointments { get; set; }
+        public DbSet<Doctor> Doctors { get; set; }
+        public DbSet<Volunteer> Volunteers { get; set; }
 
         public static ApplicationDbContext Create()
         {
