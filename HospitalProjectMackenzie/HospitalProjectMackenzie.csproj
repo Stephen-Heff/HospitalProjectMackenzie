@@ -206,6 +206,7 @@
     <Compile Include="Migrations\202303202050450_create-tables-Doctor-Volunteer.cs" />
     <Compile Include="Migrations\202303202050450_create-tables-Doctor-Volunteer.designer.cs">
       <DependentUpon>202303202050450_create-tables-Doctor-Volunteer.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\202303202301405_bills.cs" />
     <Compile Include="Migrations\202303202301405_bills.Designer.cs">
       <DependentUpon>202303202301405_bills.cs</DependentUpon>
@@ -315,6 +316,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202303202050450_create-tables-Doctor-Volunteer.resx">
       <DependentUpon>202303202050450_create-tables-Doctor-Volunteer.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202303202301405_bills.resx">
       <DependentUpon>202303202301405_bills.cs</DependentUpon>
     </EmbeddedResource>
