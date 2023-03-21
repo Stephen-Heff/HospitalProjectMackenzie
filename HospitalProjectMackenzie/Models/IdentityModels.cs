@@ -33,6 +33,8 @@ namespace HospitalProjectMackenzie.Models
         public DbSet<Volunteer> Volunteers { get; set; }
         public DbSet<Bill> Bills { get; set; }
         public DbSet<Payment> Payments { get; set; }
+        public DbSet<Department> Departments { get; set; }
+        public DbSet<Room> Rooms { get; set; }
 
         public static ApplicationDbContext Create()
         {
