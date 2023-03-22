@@ -11,5 +11,8 @@ namespace HospitalProjectMackenzie.Models
         public string DoctorFirstName { get; set; }
         public string DoctorLastName { get; set; }
         public string DoctorEmployeeNumber { get; set; }
+
+        // Navigation property for Appointments
+        public virtual ICollection<Appointment> Appointments { get; set; }
     }
 }
