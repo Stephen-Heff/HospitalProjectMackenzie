@@ -39,4 +39,20 @@ namespace HospitalProjectMackenzie.Models
 
        
     }
+
+    public class AppointmentDto
+    {
+        public int AppointmentID { get; set; }
+        public string AppointmentName { get; set; }
+
+        public string PatientFirstName { get; set; }
+
+        public string PatientLastName { get; set; }
+
+        public DateTime PatientDateOfBirth { get; set; }
+
+        public string PatientCellPhone { get; set; }
+
+    }
+
 }
