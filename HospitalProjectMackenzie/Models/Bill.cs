@@ -18,6 +18,13 @@ namespace HospitalProjectMackenzie.Models
         public int AppointmentID { get; set; }
         public virtual Appointment Appointment { get; set; }
 
+    }
+    public class BillDto
+    {
+        public int BillID { get; set; }
+        public int BillAmount { get; set; }
+        public int AppointmentID { get; set; }
 
     }
+
 }
