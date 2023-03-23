@@ -22,21 +22,37 @@ namespace HospitalProjectMackenzie.Models
 
         [ForeignKey("Patient")]
         public int PatientID { get; set; }
-        public virtual  Patient  Patient { get; set; }
+        public virtual Patient Patient { get; set; }
 
         //Foreign keys for Doctors
         [ForeignKey("Doctor")]
         public int DoctorID { get; set; }
-        public virtual  Doctor Doctor{ get; set; }
+        public virtual Doctor Doctor { get; set; }
         //Foreign keys for Room
         [ForeignKey("Room")]
         public int RoomID { get; set; }
-        public virtual  Room Room{ get; set; }
+        public virtual Room Room { get; set; }
 
 
 
 
 
-       
+
     }
+
+    public class AppointmentDto
+    {
+        public int AppointmentID { get; set; }
+        public string AppointmentName { get; set; }
+
+        public string PatientFirstName { get; set; }
+
+        public string PatientLastName { get; set; }
+
+        public DateTime PatientDateOfBirth { get; set; }
+
+        public string PatientCellPhone { get; set; }
+
+    }
+
 }
