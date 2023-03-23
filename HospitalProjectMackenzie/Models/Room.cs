@@ -9,5 +9,8 @@ namespace HospitalProjectMackenzie.Models
     {
         public int RoomID { get; set; }
         public string RoomName { get; set; }
+
+        // Navigation property for Appointments
+        public virtual ICollection<Appointment> Appointments { get; set; }
     }
 }
