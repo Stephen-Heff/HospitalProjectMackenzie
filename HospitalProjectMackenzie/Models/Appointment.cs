@@ -37,7 +37,6 @@ namespace HospitalProjectMackenzie.Models
 
 
 
-        // Navigation property for Appointments
-        public virtual ICollection<Bill> Bills { get; set; }
+       
     }
 }
