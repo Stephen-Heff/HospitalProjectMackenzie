@@ -231,6 +231,10 @@
     <Compile Include="Migrations\202303231804379_cascade.designer.cs">
       <DependentUpon>202303231804379_cascade.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202303231828331_Bill-Appointment.cs" />
+    <Compile Include="Migrations\202303231828331_Bill-Appointment.designer.cs">
+      <DependentUpon>202303231828331_Bill-Appointment.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Room.cs" />
@@ -354,6 +358,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202303231804379_cascade.resx">
       <DependentUpon>202303231804379_cascade.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202303231828331_Bill-Appointment.resx">
+      <DependentUpon>202303231828331_Bill-Appointment.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

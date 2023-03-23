@@ -34,5 +34,10 @@ namespace HospitalProjectMackenzie.Models
         public virtual  Room Room{ get; set; }
 
 
+
+
+
+        // Navigation property for Appointments
+        public virtual ICollection<Bill> Bills { get; set; }
     }
 }
