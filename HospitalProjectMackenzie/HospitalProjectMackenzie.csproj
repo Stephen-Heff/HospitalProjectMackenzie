@@ -56,6 +56,7 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
@@ -63,6 +64,7 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Web.Routing" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Configuration" />
@@ -106,6 +108,7 @@
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="System.Xml.Linq" />
     <Reference Include="WebGrease">
       <Private>True</Private>
       <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
@@ -223,6 +226,10 @@
     <Compile Include="Migrations\202303222332483_appointments-rooms-patients-doctors.cs" />
     <Compile Include="Migrations\202303222332483_appointments-rooms-patients-doctors.designer.cs">
       <DependentUpon>202303222332483_appointments-rooms-patients-doctors.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202303231804379_cascade.cs" />
+    <Compile Include="Migrations\202303231804379_cascade.designer.cs">
+      <DependentUpon>202303231804379_cascade.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -344,6 +351,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202303222332483_appointments-rooms-patients-doctors.resx">
       <DependentUpon>202303222332483_appointments-rooms-patients-doctors.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202303231804379_cascade.resx">
+      <DependentUpon>202303231804379_cascade.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
