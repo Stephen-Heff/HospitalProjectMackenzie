@@ -21,4 +21,24 @@ namespace HospitalProjectMackenzie.Models
         // Navigation property for Appointments
         public virtual ICollection<Appointment> Appointments { get; set; }
     }
+
+
+    public class PatientDto
+    {
+        public int PatientID { get; set; }
+        public string PatientFirstName { get; set; }
+
+        public string PatientLastName { get; set; }
+        public string PatientAddress { get; set; }
+
+        public DateTime PatientDateOfBirth { get; set; }
+
+        public string PatientCellPhone { get; set; }
+
+    }
+
 }
+
+
+
+
