@@ -21,4 +21,11 @@ namespace HospitalProjectMackenzie.Models
         public virtual Bill Bill { get; set; }
 
     }
+
+    public class PaymentDto
+    {
+        public int PaymentID { get; set; }
+        public int PaymentAmount { get; set; }
+
+    }
 }
