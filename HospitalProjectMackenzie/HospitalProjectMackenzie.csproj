@@ -181,8 +181,10 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AppointmentController.cs" />
     <Compile Include="Controllers\AppointmentDataController.cs" />
     <Compile Include="Controllers\BillDataController.cs" />
+    <Compile Include="Controllers\PatientController.cs" />
     <Compile Include="Controllers\PaymentDataController.cs" />
     <Compile Include="Controllers\RoomDataController.cs" />
     <Compile Include="Controllers\DepartmentDataController.cs" />
@@ -254,6 +256,10 @@
     <Compile Include="Models\Department.cs" />
     <Compile Include="Models\Amenity.cs" />
     <Compile Include="Models\Site.cs" />
+    <Compile Include="Models\ViewModels\DetailsAppointment.cs" />
+    <Compile Include="Models\ViewModels\DetailsPatient.cs" />
+    <Compile Include="Models\ViewModels\UpdateAppointment.cs" />
+    <Compile Include="Models\ViewModels\UpdatePatient.cs" />
     <Compile Include="Models\Volunteer.cs" />
     <Compile Include="Models\Doctor.cs" />
     <Compile Include="Models\Appointment.cs" />
@@ -322,6 +328,18 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Appointment\List.cshtml" />
+    <Content Include="Views\Patient\List.cshtml" />
+    <Content Include="Views\Patient\Details.cshtml" />
+    <Content Include="Views\Appointment\Details.cshtml" />
+    <Content Include="Views\Appointment\New.cshtml" />
+    <Content Include="Views\Patient\New.cshtml" />
+    <Content Include="Views\Appointment\Error.cshtml" />
+    <Content Include="Views\Patient\Error.cshtml" />
+    <Content Include="Views\Patient\Edit.cshtml" />
+    <Content Include="Views\Appointment\Edit.cshtml" />
+    <Content Include="Views\Appointment\DeleteConfirm.cshtml" />
+    <Content Include="Views\Patient\DeleteConfirm.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

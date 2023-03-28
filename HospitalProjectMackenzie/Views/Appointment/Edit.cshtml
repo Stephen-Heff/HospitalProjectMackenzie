@@ -1,0 +1,24 @@
+﻿@model HospitalProjectMackenzie.Models.ViewModels.UpdateAppointment
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Update Appointment</h2>
+
+
+<form action="/Patient/Update/@Model.SelectedAppointment.AppointmentID" method="POST">
+    <div style="display:none;">
+        @* Pass through the Appointment ID *@
+        <input type="text" name="AppointmentID" value="@Model.SelectedAppointment.AppointmentID" />
+    </div>
+    <div>
+        <label>Name:</label> <input type="text" name="AppointmentName" />
+    </div>
+    <div>
+        <input type="submit" value="Update Appointment" />
+
+    </div>
+
+
+</form>
