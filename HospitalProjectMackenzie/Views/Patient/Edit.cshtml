@@ -1,0 +1,32 @@
+﻿@model HospitalProjectMackenzie.Models.ViewModels.UpdatePatient
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Update Patient</h2>
+
+<form action="/Patient/Update/@Model.SelectedPatient.PatientID" method="POST">
+    <div style="display:none;">
+        @* Pass through the patient ID *@
+        <input type="text" name="PatientID" value="@Model.SelectedPatient.PatientID" />
+    </div>
+    <div>
+        <label>First Name:</label> <input type="text" name="PatientFirstName" />
+    </div>
+    <div>
+        <label>Last Name:</label> <input type="text" name="PatientLastName" />
+    </div>
+    <div>
+        <label>Address :</label> <input type="text" name="PatientAddress" />
+    </div>
+    <div>
+        <label>DOB:</label> <input type="text" name="PatientDateOfBirth" />
+    </div>
+    <div>
+        <label>PatientCellPhone: </label> <input type="text" name="PatientCellPhone" />
+    </div>
+    <div>
+        <input type="submit" value="Update Patient" />
+
+    </div>
+</form>

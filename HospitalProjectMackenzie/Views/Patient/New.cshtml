@@ -1,0 +1,27 @@
+﻿@model IEnumerable<HospitalProjectMackenzie.Models.PatientDto>
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+<form action="/Patient/Create" method="POST">
+    <div>
+        <label>First Name:</label> <input type="text" name="PatientFirstName" />
+    </div>
+    <div>
+        <label>Last Name:</label> <input type="text" name="PatientLastName" />
+    </div>
+    <div>
+        <label>Address :</label> <input type="text" name="PatientAddress" />
+    </div>
+    <div>
+        <label>DOB:</label> <input type="text" name="PatientDateOfBirth" />
+    </div>
+    <div>
+        <label>PatientCellPhone: </label> <input type="text" name="PatientCellPhone" />
+    </div>
+    <div>
+        <input type="submit" value="Add Patient" />
+
+    </div>
+</form>
