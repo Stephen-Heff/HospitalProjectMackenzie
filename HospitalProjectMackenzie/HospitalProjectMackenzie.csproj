@@ -457,6 +457,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202303281950285_add-foreign-key-for-doctor-and-volunteer-table.resx">
       <DependentUpon>202303281950285_add-foreign-key-for-doctor-and-volunteer-table.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202303282117544_fix-db-amenity.resx">
       <DependentUpon>202303282117544_fix-db-amenity.cs</DependentUpon>
     </EmbeddedResource>
