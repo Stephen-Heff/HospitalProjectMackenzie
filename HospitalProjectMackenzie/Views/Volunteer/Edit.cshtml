@@ -1,0 +1,35 @@
+﻿@model HospitalProjectMackenzie.Models.ViewModels.UpdateVolunteer
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Update Volunteer</h2>
+<form action="/Volunteer/Update/@Model.SelectedVolunteer.VolunteerID" method="POST">
+    <div style="display:none;">
+        <input type="text" name="VolunteerID" value="@Model.SelectedVolunteer.VolunteerID" />
+    </div>
+    <div>
+        <label for="VolunteerFirstName">First Name:</label> <input type="text" name="VolunteerFirstName" value="@Model.SelectedVolunteer.VolunteerFirstName" />
+    </div>
+    <div>
+        <label for="VolunteerLastName">Last Name:</label> <input type="text" name="VolunteerLastName" value="@Model.SelectedVolunteer.VolunteerLastName" />
+    </div>
+    <div>
+        <label for="DepartmentID">Department:</label>
+        <select name="DepartmentID">
+            @foreach (var department in Model.Departments)
+            {
+                string selected = "";
+                if (department.DepartmentID == Model.SelectedVolunteer.DepartmentID)
+                {
+                    selected = "selected";
+                }
+                <option value="@department.DepartmentID">@department.DepartmentName</option>
+            }
+        </select>
+    </div>
+    <div>
+        <input type="submit" value="Update Volunteer" />
+    </div>
+</form>
+

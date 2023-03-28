@@ -182,7 +182,11 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\VolunteerController.cs" />
+    <Compile Include="Controllers\DoctorController.cs" />
+    <Compile Include="Controllers\VolunteerDataController.cs" />
     <Compile Include="Controllers\SiteController.cs" />
+    <Compile Include="Controllers\DoctorDataController.cs" />
     <Compile Include="Controllers\SiteDataController.cs" />
     <Compile Include="Controllers\AppointmentDataController.cs" />
     <Compile Include="Controllers\AppointmentController.cs" />
@@ -267,6 +271,8 @@
     <Compile Include="Models\Site.cs" />
     <Compile Include="Models\ViewModels\DetailsBill.cs" />
     <Compile Include="Models\ViewModels\SelectedBill.cs" />
+    <Compile Include="Models\ViewModels\UpdateVolunteer.cs" />
+    <Compile Include="Models\ViewModels\UpdateDoctor.cs" />
     <Compile Include="Models\ViewModels\UpdateSite.cs" />
     <Compile Include="Models\ViewModels\UpdateAppointment.cs" />
     <Compile Include="Models\ViewModels\DetailsPatient.cs" />
@@ -364,6 +370,16 @@
     <Content Include="Views\Site\Error.cshtml" />
     <Content Include="Views\Site\List.cshtml" />
     <Content Include="Views\Site\New.cshtml" />
+    <Content Include="Views\Doctor\DeleteConfirm.cshtml" />
+    <Content Include="Views\Doctor\Edit.cshtml" />
+    <Content Include="Views\Doctor\Error.cshtml" />
+    <Content Include="Views\Doctor\List.cshtml" />
+    <Content Include="Views\Doctor\New.cshtml" />
+    <Content Include="Views\Volunteer\DeleteConfirm.cshtml" />
+    <Content Include="Views\Volunteer\Edit.cshtml" />
+    <Content Include="Views\Volunteer\Error.cshtml" />
+    <Content Include="Views\Volunteer\List.cshtml" />
+    <Content Include="Views\Volunteer\New.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

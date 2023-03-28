@@ -1,0 +1,10 @@
+﻿@model HospitalProjectMackenzie.Models.VolunteerDto
+@{
+    ViewBag.Title = "DeleteConfirm";
+}
+<h2>Are you sure you want to delete this Volunteer?</h2>
+<a href="/Volunteer/List">Cancel</a>
+<h2>@Model.VolunteerFirstName @Model.VolunteerLastName</h2>
+<form action="/Volunteer/Delete/@Model.VolunteerID" method="POST">
+    <input type="submit" value="Confirm Delete" />
+</form>
