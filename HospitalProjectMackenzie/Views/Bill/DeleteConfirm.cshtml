@@ -1,0 +1,12 @@
+﻿@model HospitalProjectMackenzie.Models.BillDto
+@{
+    ViewBag.Title = "DeleteConfirm";
+}
+<h2>Are you sure you want to delete this bill?</h2>
+<a href="/Bill/List">Cancel</a>
+<h2>@Model.BillID</h2>
+<div>Amount: @Model.BillAmount</div>
+<form action="/Bill/Delete/@Model.BillID" method="POST">
+    <input type="submit" value="Confirm Delete" />
+
+</form>
