@@ -1,0 +1,27 @@
+﻿@model IEnumerable<HospitalProjectMackenzie.Models.AppointmentDto>
+@{
+    ViewBag.Title = "Create";
+}
+<a href="/Site/List">Go back to list</a>
+<h2>Create</h2>
+
+<form action="/Site/Create" method="POST">
+    <div>
+        <label>Site Name:</label> <input type="text" name="SiteName" />
+    </div>
+    <div>
+        <label>Description:</label> <textarea name="SiteDescription"></textarea>
+    </div>
+    <div>
+        <label>Address:</label> <input type="text" name="SiteAddress" />
+    </div>
+    <div>
+        <label>Phone Number:</label> <input type="text" name="SiteNumber" />
+    </div>
+    <div>
+        <label>img:</label> <input type="text" name="SiteImageUrl" />
+    </div>
+    <div>
+        <input type="submit" value="Add Site" />
+    </div>
+</form>

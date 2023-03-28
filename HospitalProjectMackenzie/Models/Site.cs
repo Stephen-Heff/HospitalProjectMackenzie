@@ -16,4 +16,14 @@ namespace HospitalProjectMackenzie.Models
         public string SiteNumber { get; set; }
         public string SiteImageUrl { get; set; }
     }
+
+    public class SiteDto
+    {
+        public int SiteID { get; set; }
+        public string SiteName { get; set; }
+        public string SiteDescription { get; set; }
+        public string SiteAddress { get; set; }
+        public string SiteNumber { get; set; }
+        public string SiteImageUrl { get; set; }
+    }
 }

@@ -1,0 +1,16 @@
+﻿@model HospitalProjectMackenzie.Models.SiteDto
+
+@{
+    ViewBag.Title = "Details";
+}
+
+
+<a href="/Site/List">Go back to list</a>
+<a href="/Site/Edit/@Model.SiteID">Edit</a>
+<a href="/Site/DeleteConfirm/@Model.SiteID">Delete</a>
+
+<h2> @Model.SiteName </h2>
+<div>Description: @Model.SiteDescription</div>
+<div>Address: @Model.SiteAddress</div>
+<div>Phone Nuumber: @Model.SiteNumber</div>
+<div>img: @Model.SiteImageUrl</div>

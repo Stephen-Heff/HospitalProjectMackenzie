@@ -1,0 +1,32 @@
+﻿@model HospitalProjectMackenzie.Models.ViewModels.UpdateSite
+
+@{
+    ViewBag.Title = "Edit";
+}
+<a href="/Site/Details/@Model.SelectedSite.SiteID">Go back to @Model.SelectedSite.SiteName</a>
+<h2>Update Site</h2>
+
+
+<form action="/Site/Update/@Model.SelectedSite.SiteID" method="POST">
+    <div style="display:none;">
+        <input type="text" name="SiteID" value="@Model.SelectedSite.SiteID" />
+    </div>
+    <div>
+        <label>Site Name:</label> <input type="text" name="SiteName" value="@Model.SelectedSite.SiteName" />
+    </div>
+    <div>
+        <label>Description:</label> <textarea name="SiteDescription">@Model.SelectedSite.SiteDescription </textarea>
+    </div>
+    <div>
+        <label>Address:</label> <input type="text" name="SiteAddress" value="@Model.SelectedSite.SiteAddress"/>
+    </div>
+    <div>
+        <label>Phone Number:</label> <input type="text" name="SiteNumber" value="@Model.SelectedSite.SiteNumber"/>
+    </div>
+    <div>
+        <label>img:</label> <input type="text" name="SiteImageUrl" value="@Model.SelectedSite.SiteImageUrl"/>
+    </div>
+    <div>
+        <input type="submit" value="Update Site" />
+    </div>
+</form>

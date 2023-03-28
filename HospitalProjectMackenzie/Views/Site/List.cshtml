@@ -1,0 +1,13 @@
+﻿@model IEnumerable<HospitalProjectMackenzie.Models.SiteDto>
+@{
+    ViewBag.Title = "List";
+}
+
+<h2>List</h2>
+<a href="/Site/New">New Site</a>
+@foreach (var appointment in Model)
+{
+    <h2><a href="/Site/Details/@appointment.SiteID">@appointment.SiteName</a></h2>
+
+
+}
