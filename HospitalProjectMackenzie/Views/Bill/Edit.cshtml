@@ -1,0 +1,35 @@
+﻿@model HospitalProjectMackenzie.Models.ViewModels.UpdateBill
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Update Bill</h2>
+<form action="/Bill/Update/@Model.SelectedBill.BillID" method="POST">
+    <div style="display:none;">
+        <input type="text" name="BillID" value="@Model.SelectedBill.BillID" />
+    </div>
+    <div>
+        <label>Amount:</label> <input type="text" name="BillAmount" value="@Model.SelectedBill.BillAmount" />
+    </div>
+    <div>
+        <label>Payment ID:</label>
+
+        <select name="PaymentID">
+            @foreach (var payment in Model.PaymentID)
+            {
+                string selected = "";
+                if (payment.PaymentID == Model.SelectedBill.PaymentID)
+                {
+                    selected = "selected";
+                }
+                <option value="@payment.PaymentID" @selected>@payment.PaymentID</option>
+
+            }
+        </select>
+    </div>
+    <div>
+        <input type="submit" value="Update Bill" />
+
+    </div>
+</form>
+
