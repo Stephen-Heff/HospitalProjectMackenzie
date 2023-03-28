@@ -1,0 +1,26 @@
+﻿@{
+    ViewBag.Title = "Create";
+}
+<a href="/Amenity/List">Go back to list</a>
+<h2>Create</h2>
+
+<form action="/Amenity/Create" method="POST">
+    <div>
+        <label>Amenity Name:</label> <input type="text" name="AmenityName" />
+    </div>
+    <div>
+        <label>Description:</label> <textarea name="AmenityDescription"></textarea>
+    </div>
+    <div>
+        <label>AmenityType:</label> <input type="text" name="AmenityType" />
+    </div>
+    <div>
+        <label>AmenityLocation:</label> <input type="text" name="AmenityLocation" />
+    </div>
+    <div>
+        <label>Site ID:</label> <input type="text" name="SiteID" />
+    </div>
+    <div>
+        <input type="submit" value="Add Site" />
+    </div>
+</form>

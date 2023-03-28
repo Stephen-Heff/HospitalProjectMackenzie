@@ -187,6 +187,9 @@
     <Compile Include="Controllers\VolunteerDataController.cs" />
     <Compile Include="Controllers\SiteController.cs" />
     <Compile Include="Controllers\DoctorDataController.cs" />
+    <Compile Include="Controllers\AmenityController.cs" />
+    <Compile Include="Controllers\SiteController.cs" />
+    <Compile Include="Controllers\AmenityDataController.cs" />
     <Compile Include="Controllers\SiteDataController.cs" />
     <Compile Include="Controllers\AppointmentDataController.cs" />
     <Compile Include="Controllers\AppointmentController.cs" />
@@ -263,6 +266,10 @@
     <Compile Include="Migrations\202303281950285_add-foreign-key-for-doctor-and-volunteer-table.designer.cs">
       <DependentUpon>202303281950285_add-foreign-key-for-doctor-and-volunteer-table.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202303282117544_fix-db-amenity.cs" />
+    <Compile Include="Migrations\202303282117544_fix-db-amenity.designer.cs">
+      <DependentUpon>202303282117544_fix-db-amenity.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Room.cs" />
@@ -273,6 +280,7 @@
     <Compile Include="Models\ViewModels\SelectedBill.cs" />
     <Compile Include="Models\ViewModels\UpdateVolunteer.cs" />
     <Compile Include="Models\ViewModels\UpdateDoctor.cs" />
+    <Compile Include="Models\ViewModels\UpdateAmenity.cs" />
     <Compile Include="Models\ViewModels\UpdateSite.cs" />
     <Compile Include="Models\ViewModels\UpdateAppointment.cs" />
     <Compile Include="Models\ViewModels\DetailsPatient.cs" />
@@ -380,6 +388,12 @@
     <Content Include="Views\Volunteer\Error.cshtml" />
     <Content Include="Views\Volunteer\List.cshtml" />
     <Content Include="Views\Volunteer\New.cshtml" />
+    <Content Include="Views\Amenity\DeleteConfirm.cshtml" />
+    <Content Include="Views\Amenity\Details.cshtml" />
+    <Content Include="Views\Amenity\Edit.cshtml" />
+    <Content Include="Views\Amenity\Error.cshtml" />
+    <Content Include="Views\Amenity\List.cshtml" />
+    <Content Include="Views\Amenity\New.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -443,6 +457,8 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202303281950285_add-foreign-key-for-doctor-and-volunteer-table.resx">
       <DependentUpon>202303281950285_add-foreign-key-for-doctor-and-volunteer-table.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202303282117544_fix-db-amenity.resx">
+      <DependentUpon>202303282117544_fix-db-amenity.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -1,0 +1,32 @@
+﻿@model HospitalProjectMackenzie.Models.ViewModels.UpdateAmenity
+
+@{
+    ViewBag.Title = "Edit";
+}
+<a href="/Amenity/Details/@Model.SelectedAmenity.AmenityID">Go back to @Model.SelectedAmenity.AmenityName</a>
+<h2>Update Site</h2>
+
+
+<form action="/Amenity/Update/@Model.SelectedAmenity.AmenityID" method="POST">
+    <div style="display:none;">
+        <input type="text" name="AmenityID" value="@Model.SelectedAmenity.AmenityID" />
+    </div>
+    <div>
+        <label>Amenity Name:</label> <input type="text" name="AmenityName" value="@Model.SelectedAmenity.AmenityName" />
+    </div>
+    <div>
+        <label>Description:</label> <textarea name="AmenityDescription">@Model.SelectedAmenity.AmenityDescription</textarea>
+    </div>
+    <div>
+        <label>AmenityType:</label> <input type="text" name="AmenityType" value="@Model.SelectedAmenity.AmenityType"/>
+    </div>
+    <div>
+        <label>AmenityLocation:</label> <input type="text" name="AmenityLocation" value="@Model.SelectedAmenity.AmenityLocation"/>
+    </div>
+    <div>
+        <label>Site ID:</label> <input type="text" name="SiteID" value="@Model.SelectedAmenity.SiteID"/>
+    </div>
+    <div>
+        <input type="submit" value="Update Site" />
+    </div>
+</form>
