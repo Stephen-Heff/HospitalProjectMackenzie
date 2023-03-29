@@ -1,0 +1,16 @@
+﻿﻿@model HospitalProjectMackenzie.Models.AmenityDto
+
+@{
+    ViewBag.Title = "Details";
+}
+
+
+<a href="/Amenity/List">Go back to list</a>
+<a href="/Amenity/Edit/@Model.AmenityID">Edit</a>
+<a href="/Amenity/DeleteConfirm/@Model.AmenityID">Delete</a>
+
+<h2> @Model.AmenityName </h2>
+<div>Description: @Model.AmenityDescription</div>
+<div>Type: @Model.AmenityType</div>
+<div>Location: @Model.AmenityLocation</div>
+<div>Site: @Model.SiteDto.SiteName</div>

@@ -1,4 +1,4 @@
-﻿using System;
+﻿﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -12,54 +12,54 @@ using System.Diagnostics;
 
 namespace HospitalProjectMackenzie.Controllers
 {
-    public class SiteController : Controller
+    public class AmenityController : Controller
     {
         private static readonly HttpClient client;
         private JavaScriptSerializer jss = new JavaScriptSerializer();
 
-        static SiteController()
+        static AmenityController()
         {
             client = new HttpClient();
-            client.BaseAddress = new Uri("https://localhost:44388/api/sitedata/");
+            client.BaseAddress = new Uri("https://localhost:44388/api/amenitydata/");
         }
 
-        // GET: Site/List
+        // GET: Amenity/List
         public ActionResult List()
         {
-            string url = "listsites";
+            string url = "listamenities";
             HttpResponseMessage response = client.GetAsync(url).Result;
 
-            IEnumerable<SiteDto> sites = response.Content.ReadAsAsync<IEnumerable<SiteDto>>().Result;
-            return View(sites);
+            IEnumerable<AmenityDto> amenities = response.Content.ReadAsAsync<IEnumerable<AmenityDto>>().Result;
+            return View(amenities);
         }
 
-        // GET: Site/Details/5
+        // GET: Amenity/Details/5
         public ActionResult Details(int id)
         {
-            string url = "findsite/" + id;
+            string url = "findamenity/" + id;
             HttpResponseMessage response = client.GetAsync(url).Result;
 
-            SiteDto selectedsites = response.Content.ReadAsAsync<SiteDto>().Result;
-            return View(selectedsites);
+            AmenityDto selectedamenities = response.Content.ReadAsAsync<AmenityDto>().Result;
+            return View(selectedamenities);
 
 
         }
 
-        // GET: Site/New
+        // GET: Amenity/New
         public ActionResult New()
         {
             return View();
         }
 
-        // POST: Site/Create
+        // POST: Amenity/Create
         [HttpPost]
-        public ActionResult Create(Site site)
+        public ActionResult Create(Amenity amenity)
         {
             Debug.WriteLine("Create");
-            string url = "addsite";
+            string url = "addamenity";
 
 
-            string jsonpayload = jss.Serialize(site);
+            string jsonpayload = jss.Serialize(amenity);
 
 
             HttpContent content = new StringContent(jsonpayload);
@@ -76,27 +76,28 @@ namespace HospitalProjectMackenzie.Controllers
             }
         }
 
-        // GET: Site/Edit/5
+        // GET: Amenity/Edit/5
         public ActionResult Edit(int id)
         {
-            SiteDto ViewModel = new SiteDto();
+            UpdateAmenity ViewModel = new UpdateAmenity();
 
-            string url = "findsite/" + id;
+            string url = "findamenity/" + id;
             HttpResponseMessage response = client.GetAsync(url).Result;
-            SiteDto SelectedSite = response.Content.ReadAsAsync<SiteDto>().Result;
-            ViewModel = SelectedSite;
+            AmenityDto SelectedAmenity = response.Content.ReadAsAsync<AmenityDto>().Result;
+            ViewModel.SelectedAmenity = SelectedAmenity;
 
             return View(ViewModel);
         }
 
-        // POST: Site/Update/5
+        // POST: Amenity/Update/5
         [HttpPost]
-        public ActionResult Update(int id, Site site)
+        public ActionResult Update(int id, Amenity amenity)
         {
-            string url = "updatesite/" + id;
-            string jsonpayload = jss.Serialize(site);
+            string url = "updateamenity/" + id;
+            string jsonpayload = jss.Serialize(amenity);
             HttpContent content = new StringContent(jsonpayload);
             content.Headers.ContentType.MediaType = "application/json";
+            Debug.WriteLine(jsonpayload);
             HttpResponseMessage response = client.PostAsync(url, content).Result;
 
             if (response.IsSuccessStatusCode)
@@ -109,21 +110,21 @@ namespace HospitalProjectMackenzie.Controllers
             }
         }
 
-        // GET: Site/Delete/5
+        // GET: Amenity/Delete/5
         public ActionResult DeleteConfirm(int id)
         {
-            string url = "findsite/" + id;
+            string url = "findamenity/" + id;
             HttpResponseMessage response = client.GetAsync(url).Result;
-            SiteDto selectedSite = response.Content.ReadAsAsync<SiteDto>().Result;
-            return View(selectedSite);
+            AmenityDto selectedAmenity = response.Content.ReadAsAsync<AmenityDto>().Result;
+            return View(selectedAmenity);
         }
 
 
-        // POST: Site/Delete/5
+        // POST: Amenity/Delete/5
         [HttpPost]
         public ActionResult Delete(int id)
         {
-            string url = "deletesite/" + id;
+            string url = "deleteamenity/" + id;
             HttpContent content = new StringContent("");
             content.Headers.ContentType.MediaType = "application/json";
             HttpResponseMessage response = client.PostAsync(url, content).Result;

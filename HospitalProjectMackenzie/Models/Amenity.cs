@@ -17,6 +17,17 @@ namespace HospitalProjectMackenzie.Models
         public string AmenityName { get; set; }
         public string AmenityLocation { get; set; }
         public string AmenityType { get; set; }
-        public string AmenityDescription { get;}
+        public string AmenityDescription { get; set; }
+    }
+
+    public class AmenityDto
+    {
+        public int AmenityID { get; set; }
+        public int SiteID { get; set; }
+        public SiteDto SiteDto { get; set; }
+        public string AmenityName { get; set; }
+        public string AmenityLocation { get; set; }
+        public string AmenityType { get; set; }
+        public string AmenityDescription { get; set; }
     }
 }

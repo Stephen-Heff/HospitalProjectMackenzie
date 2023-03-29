@@ -5,9 +5,9 @@
 
 <h2>List</h2>
 <a href="/Site/New">New Site</a>
-@foreach (var appointment in Model)
+@foreach (var site in Model)
 {
-    <h2><a href="/Site/Details/@appointment.SiteID">@appointment.SiteName</a></h2>
+    <h2><a href="/Site/Details/@site.SiteID">@site.SiteName</a></h2>
 
 
 }
