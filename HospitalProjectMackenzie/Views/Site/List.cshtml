@@ -3,11 +3,29 @@
     ViewBag.Title = "List";
 }
 
+<br />
+
+<ul>
+    <li><a href="/Site/New">New Site</a></li>
+</ul>
+
 <h2>List</h2>
-<a href="/Site/New">New Site</a>
+
 @foreach (var site in Model)
 {
-    <h2><a href="/Site/Details/@site.SiteID">@site.SiteName</a></h2>
-
-
+    <div class="record">
+        @{
+            string pic = "/Content/Images/Site/Default.png";
+            string alt = "No Profile Picture Provided.";
+            if (!String.IsNullOrEmpty(@site.SiteImageUrl))
+            {
+                pic = "/Content/Images/Site/" + @site.SiteImageUrl;
+                alt = "picture of " + site.SiteName;
+            }
+        }
+        <div class="imagecontainer">
+            <img src="@pic" alt="@alt" />
+        </div>
+        <h2><a href="/Site/Details/@site.SiteID">@site.SiteName</a></h2>
+    </div>
 }
