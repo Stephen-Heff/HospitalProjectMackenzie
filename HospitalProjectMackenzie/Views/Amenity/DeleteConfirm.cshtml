@@ -3,8 +3,13 @@
     ViewBag.Title = "DeleteConfirm";
 }
 
-<a href="/Amenity/Details/@Model.AmenityID">Go back to @Model.AmenityName</a>
-<h2>Are you sure you want to delete this Amenity?</h2>
+<br />
+
+<ul>
+    <li><a href="/Amenity/Details/@Model.AmenityID">Go back to @Model.AmenityName</a></li>
+</ul>
+
+<h1>Are you sure you want to delete this Amenity?</h1>
 <h2>@Model.AmenityName</h2>
 <form action="/Amenity/Delete/@Model.AmenityID" method="POST">
     <input type="submit" value="Confirm Delete" />

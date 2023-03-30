@@ -20,13 +20,13 @@ namespace HospitalProjectMackenzie.Controllers
         static AmenityController()
         {
             client = new HttpClient();
-            client.BaseAddress = new Uri("https://localhost:44388/api/amenitydata/");
+            client.BaseAddress = new Uri("https://localhost:44388/api/");
         }
 
         // GET: Amenity/List
         public ActionResult List()
         {
-            string url = "listamenities";
+            string url = "amenitydata/listamenities";
             HttpResponseMessage response = client.GetAsync(url).Result;
 
             IEnumerable<AmenityDto> amenities = response.Content.ReadAsAsync<IEnumerable<AmenityDto>>().Result;
@@ -36,7 +36,7 @@ namespace HospitalProjectMackenzie.Controllers
         // GET: Amenity/Details/5
         public ActionResult Details(int id)
         {
-            string url = "findamenity/" + id;
+            string url = "amenitydata/findamenity/" + id;
             HttpResponseMessage response = client.GetAsync(url).Result;
 
             AmenityDto selectedamenities = response.Content.ReadAsAsync<AmenityDto>().Result;
@@ -48,19 +48,20 @@ namespace HospitalProjectMackenzie.Controllers
         // GET: Amenity/New
         public ActionResult New()
         {
-            return View();
+            string url = "sitedata/listsites/";
+            HttpResponseMessage response = client.GetAsync(url).Result;
+            IEnumerable<SiteDto> sites = response.Content.ReadAsAsync<IEnumerable<SiteDto>>().Result;
+            return View(sites);
         }
 
         // POST: Amenity/Create
         [HttpPost]
         public ActionResult Create(Amenity amenity)
         {
-            Debug.WriteLine("Create");
-            string url = "addamenity";
 
+            string url = "amenitydata/addamenity";
 
             string jsonpayload = jss.Serialize(amenity);
-
 
             HttpContent content = new StringContent(jsonpayload);
             content.Headers.ContentType.MediaType = "application/json";
@@ -81,10 +82,15 @@ namespace HospitalProjectMackenzie.Controllers
         {
             UpdateAmenity ViewModel = new UpdateAmenity();
 
-            string url = "findamenity/" + id;
+            string url = "amenitydata/findamenity/" + id;
             HttpResponseMessage response = client.GetAsync(url).Result;
             AmenityDto SelectedAmenity = response.Content.ReadAsAsync<AmenityDto>().Result;
             ViewModel.SelectedAmenity = SelectedAmenity;
+
+            url = "sitedata/listsites/";
+            response = client.GetAsync(url).Result;
+            IEnumerable<SiteDto> sites = response.Content.ReadAsAsync<IEnumerable<SiteDto>>().Result;
+            ViewModel.SiteOptions = sites;
 
             return View(ViewModel);
         }
@@ -93,7 +99,7 @@ namespace HospitalProjectMackenzie.Controllers
         [HttpPost]
         public ActionResult Update(int id, Amenity amenity)
         {
-            string url = "updateamenity/" + id;
+            string url = "amenitydata/updateamenity/" + id;
             string jsonpayload = jss.Serialize(amenity);
             HttpContent content = new StringContent(jsonpayload);
             content.Headers.ContentType.MediaType = "application/json";
@@ -113,7 +119,7 @@ namespace HospitalProjectMackenzie.Controllers
         // GET: Amenity/Delete/5
         public ActionResult DeleteConfirm(int id)
         {
-            string url = "findamenity/" + id;
+            string url = "amenitydata/findamenity/" + id;
             HttpResponseMessage response = client.GetAsync(url).Result;
             AmenityDto selectedAmenity = response.Content.ReadAsAsync<AmenityDto>().Result;
             return View(selectedAmenity);
@@ -124,7 +130,7 @@ namespace HospitalProjectMackenzie.Controllers
         [HttpPost]
         public ActionResult Delete(int id)
         {
-            string url = "deleteamenity/" + id;
+            string url = "amenitydata/deleteamenity/" + id;
             HttpContent content = new StringContent("");
             content.Headers.ContentType.MediaType = "application/json";
             HttpResponseMessage response = client.PostAsync(url, content).Result;

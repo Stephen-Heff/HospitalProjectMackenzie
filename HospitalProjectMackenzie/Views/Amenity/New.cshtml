@@ -1,7 +1,14 @@
-﻿@{
+﻿@model IEnumerable<HospitalProjectMackenzie.Models.SiteDto>
+@{
     ViewBag.Title = "Create";
 }
-<a href="/Amenity/List">Go back to list</a>
+
+<br />
+
+<ul>
+    <li><a href="/Amenity/List">Go back to list</a></li>
+</ul>
+
 <h2>Create</h2>
 
 <form action="/Amenity/Create" method="POST">
@@ -18,7 +25,13 @@
         <label>AmenityLocation:</label> <input type="text" name="AmenityLocation" />
     </div>
     <div>
-        <label>Site ID:</label> <input type="text" name="SiteID" />
+        <label for="SiteID">Site:</label>
+        <select name="SiteID">
+            @foreach (var site in Model)
+            {
+                <option value="@site.SiteID">@site.SiteName</option>
+            }
+        </select>
     </div>
     <div>
         <input type="submit" value="Add Site" />

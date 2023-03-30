@@ -3,9 +3,14 @@
 @{
     ViewBag.Title = "Edit";
 }
-<a href="/Amenity/Details/@Model.SelectedAmenity.AmenityID">Go back to @Model.SelectedAmenity.AmenityName</a>
-<h2>Update Site</h2>
 
+<br/>
+
+<ul>
+    <li><a href="/Amenity/Details/@Model.SelectedAmenity.AmenityID">Go back to @Model.SelectedAmenity.AmenityName</a></li>
+</ul>
+
+<h2>Update Site</h2>
 
 <form action="/Amenity/Update/@Model.SelectedAmenity.AmenityID" method="POST">
     <div style="display:none;">
@@ -18,13 +23,24 @@
         <label>Description:</label> <textarea name="AmenityDescription">@Model.SelectedAmenity.AmenityDescription</textarea>
     </div>
     <div>
-        <label>AmenityType:</label> <input type="text" name="AmenityType" value="@Model.SelectedAmenity.AmenityType"/>
+        <label>AmenityType:</label> <input type="text" name="AmenityType" value="@Model.SelectedAmenity.AmenityType" />
     </div>
     <div>
-        <label>AmenityLocation:</label> <input type="text" name="AmenityLocation" value="@Model.SelectedAmenity.AmenityLocation"/>
+        <label>AmenityLocation:</label> <input type="text" name="AmenityLocation" value="@Model.SelectedAmenity.AmenityLocation" />
     </div>
     <div>
-        <label>Site ID:</label> <input type="text" name="SiteID" value="@Model.SelectedAmenity.SiteID"/>
+        <label for="SiteID">Site:</label>
+        <select name="SiteID">
+            @foreach (var site in Model.SiteOptions)
+            {
+                string selected = "";
+                if (site.SiteID == Model.SelectedAmenity.SiteID)
+                {
+                    selected = "selected";
+                }
+                <option value="@site.SiteID">@site.SiteName</option>
+            }
+        </select>
     </div>
     <div>
         <input type="submit" value="Update Site" />
