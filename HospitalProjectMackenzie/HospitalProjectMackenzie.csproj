@@ -56,7 +56,6 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
@@ -108,7 +107,6 @@
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="System.Xml.Linq" />
     <Reference Include="WebGrease">
       <Private>True</Private>
       <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
@@ -270,6 +268,10 @@
     <Compile Include="Migrations\202303282117544_fix-db-amenity.cs" />
     <Compile Include="Migrations\202303282117544_fix-db-amenity.designer.cs">
       <DependentUpon>202303282117544_fix-db-amenity.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202303301809205_fix-db.cs" />
+    <Compile Include="Migrations\202303301809205_fix-db.designer.cs">
+      <DependentUpon>202303301809205_fix-db.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -473,6 +475,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202303282117544_fix-db-amenity.resx">
       <DependentUpon>202303282117544_fix-db-amenity.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202303301809205_fix-db.resx">
+      <DependentUpon>202303301809205_fix-db.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
