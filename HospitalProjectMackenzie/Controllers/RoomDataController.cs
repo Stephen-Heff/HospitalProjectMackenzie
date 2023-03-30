@@ -73,5 +73,7 @@ namespace HospitalProjectMackenzie.Controllers
 
             return Ok(RoomDtos);
         }
+
+
     }
 }

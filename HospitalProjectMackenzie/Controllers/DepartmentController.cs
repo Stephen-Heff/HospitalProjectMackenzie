@@ -12,54 +12,58 @@ using System.Diagnostics;
 
 namespace HospitalProjectMackenzie.Controllers
 {
-    public class SiteController : Controller
+    public class DepartmentController : Controller
     {
         private static readonly HttpClient client;
         private JavaScriptSerializer jss = new JavaScriptSerializer();
 
-        static SiteController()
+        static DepartmentController()
         {
             client = new HttpClient();
-            client.BaseAddress = new Uri("https://localhost:44388/api/sitedata/");
+            client.BaseAddress = new Uri("https://localhost:44388/api/");
         }
 
-        // GET: Site/List
+        // GET: Department/List
         public ActionResult List()
         {
-            string url = "listsites";
+            string url = "departmentdata/listdepartments";
+            HttpResponseMessage response = client.GetAsync(url).Result;
+
+            IEnumerable<DepartmentDto> departments = response.Content.ReadAsAsync<IEnumerable<DepartmentDto>>().Result;
+            return View(departments);
+        }
+
+        // GET: Department/Details/5
+        public ActionResult Details(int id)
+        {
+            string url = "departmentdata/finddepartment/" + id;
+            HttpResponseMessage response = client.GetAsync(url).Result;
+
+            DepartmentDto selecteddepartments = response.Content.ReadAsAsync<DepartmentDto>().Result;
+            return View(selecteddepartments);
+
+
+        }
+
+        // GET: Department/New
+        public ActionResult New()
+        {
+            string url = "sitedata/listsites/";
             HttpResponseMessage response = client.GetAsync(url).Result;
 
             IEnumerable<SiteDto> sites = response.Content.ReadAsAsync<IEnumerable<SiteDto>>().Result;
             return View(sites);
         }
 
-        // GET: Site/Details/5
-        public ActionResult Details(int id)
-        {
-            string url = "findsite/" + id;
-            HttpResponseMessage response = client.GetAsync(url).Result;
-
-            SiteDto selectedsites = response.Content.ReadAsAsync<SiteDto>().Result;
-            return View(selectedsites);
-
-
-        }
-
-        // GET: Site/New
-        public ActionResult New()
-        {
-            return View();
-        }
-
-        // POST: Site/Create
+        // POST: Department/Create
         [HttpPost]
-        public ActionResult Create(Site site)
+        public ActionResult Create(Department department)
         {
             Debug.WriteLine("Create");
-            string url = "addsite";
+            string url = "departmentdata/adddepartment";
 
 
-            string jsonpayload = jss.Serialize(site);
+            string jsonpayload = jss.Serialize(department);
 
 
             HttpContent content = new StringContent(jsonpayload);
@@ -76,27 +80,28 @@ namespace HospitalProjectMackenzie.Controllers
             }
         }
 
-        // GET: Site/Edit/5
+        // GET: Department/Edit/5
         public ActionResult Edit(int id)
         {
-            SiteDto ViewModel = new SiteDto();
+            UpdateDepartment ViewModel = new UpdateDepartment();
 
-            string url = "findsite/" + id;
+            string url = "departmentdata/finddepartment/" + id;
             HttpResponseMessage response = client.GetAsync(url).Result;
-            SiteDto SelectedSite = response.Content.ReadAsAsync<SiteDto>().Result;
-            ViewModel = SelectedSite;
+            DepartmentDto SelectedDepartment = response.Content.ReadAsAsync<DepartmentDto>().Result;
+            ViewModel.SelectedDepartment = SelectedDepartment;
 
             return View(ViewModel);
         }
 
-        // POST: Site/Update/5
+        // POST: Department/Update/5
         [HttpPost]
-        public ActionResult Update(int id, Site site)
+        public ActionResult Update(int id, Department department)
         {
-            string url = "updatesite/" + id;
-            string jsonpayload = jss.Serialize(site);
+            string url = "departmentdata/updatedepartment/" + id;
+            string jsonpayload = jss.Serialize(department);
             HttpContent content = new StringContent(jsonpayload);
             content.Headers.ContentType.MediaType = "application/json";
+            Debug.WriteLine(jsonpayload);
             HttpResponseMessage response = client.PostAsync(url, content).Result;
 
             if (response.IsSuccessStatusCode)
@@ -109,21 +114,21 @@ namespace HospitalProjectMackenzie.Controllers
             }
         }
 
-        // GET: Site/Delete/5
+        // GET: Department/Delete/5
         public ActionResult DeleteConfirm(int id)
         {
-            string url = "findsite/" + id;
+            string url = "departmentdata/finddepartment/" + id;
             HttpResponseMessage response = client.GetAsync(url).Result;
-            SiteDto selectedSite = response.Content.ReadAsAsync<SiteDto>().Result;
-            return View(selectedSite);
+            DepartmentDto selectedDepartment = response.Content.ReadAsAsync<DepartmentDto>().Result;
+            return View(selectedDepartment);
         }
 
 
-        // POST: Site/Delete/5
+        // POST: Department/Delete/5
         [HttpPost]
         public ActionResult Delete(int id)
         {
-            string url = "deletesite/" + id;
+            string url = "departmentdata/deletedepartment/" + id;
             HttpContent content = new StringContent("");
             content.Headers.ContentType.MediaType = "application/json";
             HttpResponseMessage response = client.PostAsync(url, content).Result;

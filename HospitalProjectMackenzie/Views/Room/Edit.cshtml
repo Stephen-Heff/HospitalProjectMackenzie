@@ -1,0 +1,32 @@
+﻿@model HospitalProjectMackenzie.Models.ViewModels.UpdateRoom
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Update Room</h2>
+<form action="/Room/Update/@Model.SelectedRoom.RoomID" method="POST">
+    <div style="display:none;">
+        <input type="text" name="RoomID" value="@Model.SelectedRoom.RoomID" />
+    </div>
+    <div>
+        <label for="RoomName">Name:</label> <input type="text" name="RoomName" value="@Model.SelectedRoom.RoomName" />
+    </div>
+    <div>
+        <label for="DepartmentID">Department:</label>
+        <select name="DepartmentID">
+            @foreach (var room in Model.Departments)
+            {
+                string selected = "";
+                if (room.SiteID == Model.SelectedRoom.DepartmentID)
+                {
+                    selected = "selected";
+                }
+                <option value="@room.DepartmentID">@room.DepartmentName</option>
+            }
+        </select>
+    </div>
+    <div>
+        <input type="submit" value="Update Room" />
+    </div>
+</form>
+

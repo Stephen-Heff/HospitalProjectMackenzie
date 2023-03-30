@@ -1,0 +1,25 @@
+﻿@model IEnumerable<HospitalProjectMackenzie.Models.SiteDto>
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create a New Department</h2>
+<form action="/Department/Create" method="POST">
+    <div>
+        <label for="DepartmentName">Name:</label> <input type="text" name="DepartmentName" />
+        <div>
+            <label for="SiteID">Site:</label>
+            <select name="SiteID">
+                @foreach (var site in Model)
+                {
+                    <option value="@site.SiteID">@site.SiteName</option>
+                }
+            </select>
+        </div>
+        <div>
+            <input type="submit" value="Add Department" />
+        </div>
+</form>
+
+

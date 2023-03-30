@@ -182,13 +182,14 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\DepartmentController.cs" />
+    <Compile Include="Controllers\RoomController.cs" />
+    <Compile Include="Controllers\SiteController.cs" />
     <Compile Include="Controllers\VolunteerController.cs" />
     <Compile Include="Controllers\DoctorController.cs" />
     <Compile Include="Controllers\VolunteerDataController.cs" />
-    <Compile Include="Controllers\SiteController.cs" />
     <Compile Include="Controllers\DoctorDataController.cs" />
     <Compile Include="Controllers\AmenityController.cs" />
-    <Compile Include="Controllers\SiteController.cs" />
     <Compile Include="Controllers\AmenityDataController.cs" />
     <Compile Include="Controllers\SiteDataController.cs" />
     <Compile Include="Controllers\AppointmentDataController.cs" />
@@ -278,6 +279,8 @@
     <Compile Include="Models\Site.cs" />
     <Compile Include="Models\ViewModels\DetailsBill.cs" />
     <Compile Include="Models\ViewModels\SelectedBill.cs" />
+    <Compile Include="Models\ViewModels\UpdateRoom.cs" />
+    <Compile Include="Models\ViewModels\UpdateDepartment.cs" />
     <Compile Include="Models\ViewModels\UpdateVolunteer.cs" />
     <Compile Include="Models\ViewModels\UpdateDoctor.cs" />
     <Compile Include="Models\ViewModels\UpdateAmenity.cs" />
@@ -394,6 +397,16 @@
     <Content Include="Views\Amenity\Error.cshtml" />
     <Content Include="Views\Amenity\List.cshtml" />
     <Content Include="Views\Amenity\New.cshtml" />
+    <Content Include="Views\Department\DeleteConfirm.cshtml" />
+    <Content Include="Views\Department\Edit.cshtml" />
+    <Content Include="Views\Department\Error.cshtml" />
+    <Content Include="Views\Department\List.cshtml" />
+    <Content Include="Views\Department\New.cshtml" />
+    <Content Include="Views\Room\DeleteConfirm.cshtml" />
+    <Content Include="Views\Room\Edit.cshtml" />
+    <Content Include="Views\Room\Error.cshtml" />
+    <Content Include="Views\Room\List.cshtml" />
+    <Content Include="Views\Room\New.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
