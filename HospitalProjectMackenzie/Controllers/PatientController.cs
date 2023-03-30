@@ -54,7 +54,7 @@ namespace HospitalProjectMackenzie.Controllers
         [HttpPost]
         public ActionResult Create(Patient patient)
         {
-            string url = "patientdata/addpatient";
+            string url = "addpatient";
 
 
             string jsonpayload = jss.Serialize(patient);
@@ -77,13 +77,13 @@ namespace HospitalProjectMackenzie.Controllers
         // GET: Patient/Edit/5
         public ActionResult Edit(int id)
         {
-            UpdatePatient ViewModel = new UpdatePatient();
+            PatientDto ViewModel = new PatientDto();
 
 
             string url = "patientdata/findpatient/" + id;
             HttpResponseMessage response = client.GetAsync(url).Result;
             PatientDto SelectedPatient = response.Content.ReadAsAsync<PatientDto>().Result;
-            ViewModel.SelectedPatient = SelectedPatient;
+            ViewModel = SelectedPatient;
 
 
 
@@ -94,7 +94,7 @@ namespace HospitalProjectMackenzie.Controllers
         [HttpPost]
         public ActionResult Update(int id, Patient patient)
         {
-            string url = "patientdata/updatepatient/" + id;
+            string url = "/updatepatient/" + id;
             string jsonpayload = jss.Serialize(patient);
             HttpContent content = new StringContent(jsonpayload);
             content.Headers.ContentType.MediaType = "application/json";
@@ -111,9 +111,9 @@ namespace HospitalProjectMackenzie.Controllers
         }
 
         // GET: Patient/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult DeleteConfirm(int id)
         {
-            string url = "patientdata/findpatient/" + id;
+            string url = "findpatient/" + id;
             HttpResponseMessage response = client.GetAsync(url).Result;
             PatientDto selectedpatient = response.Content.ReadAsAsync<PatientDto>().Result;
             return View(selectedpatient);
@@ -121,9 +121,9 @@ namespace HospitalProjectMackenzie.Controllers
 
         // POST: Patient/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(int id)
         {
-            string url = "patientdata/deletepatient/" + id;
+            string url = "deletepatient/" + id;
             HttpContent content = new StringContent("");
             content.Headers.ContentType.MediaType = "application/json";
             HttpResponseMessage response = client.PostAsync(url, content).Result;

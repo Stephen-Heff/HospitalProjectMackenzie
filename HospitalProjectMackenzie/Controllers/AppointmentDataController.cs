@@ -29,7 +29,7 @@ namespace HospitalProjectMackenzie.Controllers
                 AppointmentName = a.AppointmentName,
                 PatientFirstName = a.Patient.PatientFirstName,
                 PatientLastName = a.Patient.PatientLastName,
-                PatientDateOfBirth = a.Patient.PatientDateOfBirth,
+             //   PatientDateOfBirth = a.Patient.PatientDateOfBirth,
                 PatientCellPhone = a.Patient.PatientCellPhone
             }));
 
@@ -48,7 +48,7 @@ namespace HospitalProjectMackenzie.Controllers
                 AppointmentName = Appointment.AppointmentName,
                 PatientFirstName = Appointment.Patient.PatientFirstName,
                 PatientLastName = Appointment.Patient.PatientLastName,
-                PatientDateOfBirth = Appointment.Patient.PatientDateOfBirth,
+               // PatientDateOfBirth = Appointment.Patient.PatientDateOfBirth,
                 PatientCellPhone = Appointment.Patient.PatientCellPhone
             };
 

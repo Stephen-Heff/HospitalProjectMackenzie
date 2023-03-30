@@ -275,6 +275,10 @@
     <Compile Include="Migrations\202303301809205_fix-db.designer.cs">
       <DependentUpon>202303301809205_fix-db.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202303301900315_ptdob.cs" />
+    <Compile Include="Migrations\202303301900315_ptdob.designer.cs">
+      <DependentUpon>202303301900315_ptdob.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Room.cs" />
@@ -480,6 +484,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202303301809205_fix-db.resx">
       <DependentUpon>202303301809205_fix-db.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202303301900315_ptdob.resx">
+      <DependentUpon>202303301900315_ptdob.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

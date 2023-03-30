@@ -15,7 +15,7 @@ namespace HospitalProjectMackenzie.Models
         public string PatientFirstName { get; set; }
         public string PatientLastName { get; set; }
         public string PatientAddress { get; set; }
-        public DateTime PatientDateOfBirth { get; set; }
+        public string PatientDateOfBirth { get; set; }
         public string PatientCellPhone { get; set; }
 
         // Navigation property for Appointments
@@ -31,7 +31,7 @@ namespace HospitalProjectMackenzie.Models
         public string PatientLastName { get; set; }
         public string PatientAddress { get; set; }
 
-        public DateTime PatientDateOfBirth { get; set; }
+        public string PatientDateOfBirth { get; set; }
 
         public string PatientCellPhone { get; set; }
 
