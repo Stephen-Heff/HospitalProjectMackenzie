@@ -4,13 +4,31 @@
     ViewBag.Title = "Details";
 }
 
+<br />
 
-<a href="/Site/List">Go back to list</a>
-<a href="/Site/Edit/@Model.SiteID">Edit</a>
-<a href="/Site/DeleteConfirm/@Model.SiteID">Delete</a>
+<ul>
+    <li><a href="/Site/List">Go back to list</a></li>
+    <li><a href="/Site/Edit/@Model.SiteID">Edit</a></li>
+    <li><a href="/Site/DeleteConfirm/@Model.SiteID">Delete</a></li>
+</ul>
 
-<h2> @Model.SiteName </h2>
+<h1> @Model.SiteName </h1>
+
+@{
+    string pic = "/Content/Images/Site/default.jpg";
+    string alt = "No Profile Picture Provided.";
+    if (!String.IsNullOrEmpty(@Model.SiteImageUrl))
+    {
+        pic = "/Content/Images/Site/" + @Model.SiteImageUrl;
+        alt = "picture of " + @Model.SiteName;
+    }
+}
+
+<div class="imagecontainer">
+    <img src="@pic" alt="@alt" />
+</div>
+
 <div>Description: @Model.SiteDescription</div>
 <div>Address: @Model.SiteAddress</div>
 <div>Phone Nuumber: @Model.SiteNumber</div>
-<div>img: @Model.SiteImageUrl</div>
+
