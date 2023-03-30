@@ -6,87 +6,134 @@ using System.Web.Mvc;
 using System.Net.Http;
 using System.Diagnostics;
 using HospitalProjectMackenzie.Models;
+using HospitalProjectMackenzie.Models.ViewModels;
 using System.Web.Script.Serialization;
 
 namespace HospitalProjectMackenzie.Controllers
 {
     public class PaymentController : Controller
     {
+        private static readonly HttpClient client;
+        private JavaScriptSerializer jss = new JavaScriptSerializer();
+
+        static PaymentController()
+        {
+            client = new HttpClient();
+            client.BaseAddress = new Uri("https://localhost:44388/api/");
+        }
         // GET: Payment/List
         public ActionResult List()
         {
-            return View();
+            string url = "paymentdata/listpayments";
+            HttpResponseMessage response = client.GetAsync(url).Result;
+            IEnumerable<PaymentDto> payments = response.Content.ReadAsAsync<IEnumerable<PaymentDto>>().Result;
+
+            return View(payments);
         }
 
         // GET: Payment/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            DetailsPayment ViewModel = new DetailsPayment();
+
+            string url = "paymentdata/findpayment/" + id;
+            HttpResponseMessage response = client.GetAsync(url).Result;
+
+            PaymentDto SelectedPayment = response.Content.ReadAsAsync<PaymentDto>().Result;
+
+            ViewModel.SelectedPayment = SelectedPayment;
+
+            return View(ViewModel);
         }
 
-        // GET: Payment/Create
-        public ActionResult Create()
+        // GET: Payment/New
+        public ActionResult New()
         {
-            return View();
+            string url = "BillData/ListBill/";
+            HttpResponseMessage response = client.GetAsync(url).Result;
+            IEnumerable<BillDto> bills = response.Content.ReadAsAsync<IEnumerable<BillDto>>().Result;
+
+            return View(bills);
         }
 
         // POST: Payment/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(Payment payment)
         {
-            try
-            {
-                // TODO: Add insert logic here
+            string url = "paymentdata/addpayment";
+            string jsonpayload = jss.Serialize(payment);
 
-                return RedirectToAction("Index");
-            }
-            catch
+            HttpContent content = new StringContent(jsonpayload);
+            content.Headers.ContentType.MediaType = "application/json";
+
+            HttpResponseMessage response = client.PostAsync(url, content).Result;
+            if (response.IsSuccessStatusCode)
             {
-                return View();
+                return RedirectToAction("List");
+            }
+            else
+            {
+                return RedirectToAction("Error");
             }
         }
 
         // GET: Payment/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            UpdatePayment ViewModel = new UpdatePayment();
+
+            string url = "paymentdata/findpayment/" + id;
+            HttpResponseMessage response = client.GetAsync(url).Result;
+            PaymentDto SelectedPayment = response.Content.ReadAsAsync<PaymentDto>().Result;
+            ViewModel.SelectedPayment = SelectedPayment;
+
+            return View(ViewModel);
         }
 
-        // POST: Payment/Edit/5
+        // POST: Payment/Update/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(int id, Payment payment)
         {
-            try
+            string url = "paymentdata/updatepayment/" + id;
+            string jsonpayload = jss.Serialize(payment);
+            HttpContent content = new StringContent(jsonpayload);
+            content.Headers.ContentType.MediaType = "application/json";
+            HttpResponseMessage response = client.PostAsync(url, content).Result;
+            if (response.IsSuccessStatusCode)
             {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
+                return RedirectToAction("List");
             }
-            catch
+            else
             {
-                return View();
+                return RedirectToAction("Error");
             }
         }
 
         // GET: Payment/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult DeleteConfirm(int id)
         {
-            return View();
+            string url = "paymentdata/findpayment/" + id;
+            HttpResponseMessage response = client.GetAsync(url).Result;
+            PaymentDto selectedPayment = response.Content.ReadAsAsync<PaymentDto>().Result;
+            return View(selectedPayment);
         }
 
         // POST: Payment/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(int id)
         {
-            try
-            {
-                // TODO: Add delete logic here
+            string url = "paymentdata/deletepayment/" + id;
+            HttpContent content = new StringContent("");
+            content.Headers.ContentType.MediaType = "application/json";
+            HttpResponseMessage response = client.PostAsync(url, content).Result;
 
-                return RedirectToAction("Index");
-            }
-            catch
+            if (response.IsSuccessStatusCode)
             {
-                return View();
+                return RedirectToAction("List");
+            }
+            else
+            {
+                return RedirectToAction("Error");
             }
         }
     }

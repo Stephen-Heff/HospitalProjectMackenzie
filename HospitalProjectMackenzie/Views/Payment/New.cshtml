@@ -1,0 +1,28 @@
+﻿@model IEnumerable<HospitalProjectMackenzie.Models.BillDto>
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create a New Payment</h2>
+<form action="/Payment/Create" method="POST">
+    <div>
+        <label>Amount:</label> <input type="text" name="PaymentAmount" />
+    </div>
+    <div>
+        <label>Bill:</label>
+        <select name="BillID">
+            @foreach (var bill in Model)
+            {
+                <option value="@bill.BillID">@bill.BillID</option>
+
+            }
+        </select>
+    </div>
+    <div>
+        <input type="submit" value="Add Payment" />
+
+    </div>
+</form>
+
+

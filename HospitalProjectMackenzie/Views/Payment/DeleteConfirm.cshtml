@@ -1,0 +1,12 @@
+﻿@model HospitalProjectMackenzie.Models.PaymentDto
+@{
+    ViewBag.Title = "DeleteConfirm";
+}
+<h2>Are you sure you want to delete this Payment?</h2>
+<a href="/Payment/List">Cancel</a>
+<h2>@Model.PaymentID</h2>
+<div>Amount: @Model.PaymentAmount</div>
+<form action="/Payment/Delete/@Model.PaymentID" method="POST">
+    <input type="submit" value="Confirm Delete" />
+
+</form>

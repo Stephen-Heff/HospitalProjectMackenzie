@@ -1,4 +1,4 @@
-﻿@model IEnumerable<HospitalProjectMackenzie.Models.PaymentDto>
+﻿@model IEnumerable<HospitalProjectMackenzie.Models.AppointmentDto>
 
 @{
     ViewBag.Title = "Create";
@@ -10,11 +10,11 @@
         <label>Amount:</label> <input type="text" name="BillAmount" />
     </div>
     <div>
-        <label>Payment:</label>
-        <select name="PaymentID">
-            @foreach (var payment in Model)
+        <label>Appointment:</label>
+        <select name="AppointmentID">
+            @foreach (var appointment in Model)
             {
-                <option value="@payment.PaymentID">@payment.PaymentAmount</option>
+                <option value="@appointment.AppointmentID">@appointment.AppointmentID</option>
 
             }
         </select>

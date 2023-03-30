@@ -5,10 +5,8 @@ using System.Web;
 
 namespace HospitalProjectMackenzie.Models.ViewModels
 {
-    public class UpdateBill
+    public class DetailsPayment
     {
-        public BillDto SelectedBill { get; set; }
-
-        public IEnumerable<AppointmentDto> Appointments { get; set; }
+        public PaymentDto SelectedPayment { get; set; }
     }
 }

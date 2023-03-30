@@ -1,0 +1,13 @@
+﻿@model IEnumerable<HospitalProjectMackenzie.Models.PaymentDto>
+@{
+    ViewBag.Title = "List";
+}
+
+<h2>List</h2>
+<a href="/Payment/New">New Payment</a>
+@foreach (var payment in Model)
+{
+    <h2><a href="/Payment/Details/@payment.PaymentID">@payment.PaymentID</a></h2>
+    <div>Amount: $ @payment.PaymentAmount</div>
+
+}

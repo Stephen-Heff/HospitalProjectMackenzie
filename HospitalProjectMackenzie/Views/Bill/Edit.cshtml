@@ -12,17 +12,17 @@
         <label>Amount:</label> <input type="text" name="BillAmount" value="@Model.SelectedBill.BillAmount" />
     </div>
     <div>
-        <label>Payment ID:</label>
+        <label>Appointment ID:</label>
 
-        <select name="PaymentID">
-            @foreach (var payment in Model.PaymentID)
+        <select name="AppointmentID">
+            @foreach (var appointment in Model.Appointments)
             {
                 string selected = "";
-                if (payment.PaymentID == Model.SelectedBill.PaymentID)
+                if (appointment.AppointmentID == Model.SelectedBill.AppointmentID)
                 {
                     selected = "selected";
                 }
-                <option value="@payment.PaymentID" @selected>@payment.PaymentID</option>
+                <option value="@appointment.AppointmentID" @selected>@appointment.AppointmentID</option>
 
             }
         </select>

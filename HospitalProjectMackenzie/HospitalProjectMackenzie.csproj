@@ -256,8 +256,11 @@
     <Compile Include="Models\Department.cs" />
     <Compile Include="Models\Amenity.cs" />
     <Compile Include="Models\Site.cs" />
+    <Compile Include="Models\ViewModels\DetailsPayments.cs" />
     <Compile Include="Models\ViewModels\DetailsBill.cs" />
+    <Compile Include="Models\ViewModels\SelectedPayment.cs" />
     <Compile Include="Models\ViewModels\SelectedBill.cs" />
+    <Compile Include="Models\ViewModels\UpdatePayments.cs" />
     <Compile Include="Models\ViewModels\UpdateBill.cs" />
     <Compile Include="Models\Volunteer.cs" />
     <Compile Include="Models\Doctor.cs" />
@@ -332,10 +335,14 @@
     <Content Include="Views\Bill\Edit.cshtml" />
     <Content Include="Views\Bill\Error.cshtml" />
     <Content Include="Views\Bill\New.cshtml" />
+    <Content Include="Views\Payment\DeleteConfirm.cshtml" />
+    <Content Include="Views\Payment\Edit.cshtml" />
+    <Content Include="Views\Payment\Error.cshtml" />
+    <Content Include="Views\Payment\List.cshtml" />
+    <Content Include="Views\Payment\New.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Payment\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
