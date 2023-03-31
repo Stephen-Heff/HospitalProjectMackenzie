@@ -419,6 +419,8 @@
     <Content Include="Views\Room\New.cshtml" />
     <Content Include="Views\Department\Details.cshtml" />
     <Content Include="Views\Room\Details.cshtml" />
+    <Content Include="Views\Doctor\Details.cshtml" />
+    <Content Include="Views\Volunteer\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -17,7 +17,16 @@ namespace HospitalProjectMackenzie.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: api/DoctorData/ListDoctors
+        /// <summary>
+        /// Returns all doctors in the system.
+        /// </summary>
+        /// <returns>
+        /// HEADER: 200 (OK)
+        /// CONTENT: all doctors in the database, including their associated department.
+        /// </returns>
+        /// <example>
+        /// GET: api/DoctorData/ListDoctors
+        /// </example>
         [HttpGet]
         public IEnumerable<DoctorDto> ListDoctors()
         {
@@ -29,22 +38,24 @@ namespace HospitalProjectMackenzie.Controllers
                 DoctorID = d.DoctorID,
                 DoctorFirstName = d.DoctorFirstName,
                 DoctorLastName = d.DoctorLastName,
-                DoctorEmployeeNumber = d.DoctorEmployeeNumber
+                DoctorEmployeeNumber = d.DoctorEmployeeNumber,
+                DepartmentID = d.DepartmentID,
+                DepartmentName = d.Department.DepartmentName,
             }));
 
             return (DoctorDtos);
         }
 
         /// <summary>
-        /// Returns all Doctors in the system associated with a particular department.
+        /// Gathers information about all doctors related to a particular department
         /// </summary>
         /// <returns>
         /// HEADER: 200 (OK)
-        /// CONTENT: all Doctors in the database responsible for a particular department
+        /// CONTENT: all doctors in the database, including their associated department matched with a particular department ID
         /// </returns>
-        /// <param name="id">Department Primary Key</param>
+        /// <param name="id">Department ID.</param>
         /// <example>
-        /// GET: api/DoctorData/ListDoctorsForDepartment/1
+        /// GET: api/DoctorData/ListDoctorsForDepartment/3
         /// </example>
         [HttpGet]
         [ResponseType(typeof(DoctorDto))]
@@ -58,13 +69,27 @@ namespace HospitalProjectMackenzie.Controllers
                 DoctorID = d.DoctorID,
                 DoctorFirstName = d.DoctorFirstName,
                 DoctorLastName = d.DoctorLastName,
-                DoctorEmployeeNumber = d.DoctorEmployeeNumber
+                DoctorEmployeeNumber = d.DoctorEmployeeNumber,
+                DepartmentID = d.DepartmentID,
+                DepartmentName = d.Department.DepartmentName,
             }));
 
             return Ok(DoctorDtos);
         }
 
-        // GET: api/DoctorData/FindDoctor/5
+        /// <summary>
+        /// Returns a particular doctor in the system.
+        /// </summary>
+        /// <returns>
+        /// HEADER: 200 (OK)
+        /// CONTENT: A doctor in the system matching up to the doctor ID primary key
+        /// or
+        /// HEADER: 404 (NOT FOUND)
+        /// </returns>
+        /// <param name="id">The primary key of the doctor</param>
+        /// <example>
+        /// GET: api/DoctorData/FindDoctor/5
+        /// </example>
         [ResponseType(typeof(Doctor))]
         [HttpGet]
         public IHttpActionResult FindDoctor(int id)
@@ -75,7 +100,9 @@ namespace HospitalProjectMackenzie.Controllers
                 DoctorID = Doctor.DoctorID,
                 DoctorFirstName = Doctor.DoctorFirstName,
                 DoctorLastName = Doctor.DoctorLastName,
-                DoctorEmployeeNumber = Doctor.DoctorEmployeeNumber
+                DoctorEmployeeNumber = Doctor.DoctorEmployeeNumber,
+                DepartmentID = Doctor.DepartmentID,
+                DepartmentName = Doctor.Department.DepartmentName,
             };
 
             if (Doctor == null)
@@ -86,7 +113,22 @@ namespace HospitalProjectMackenzie.Controllers
             return Ok(DoctorDto);
         }
 
-        // POST: api/DoctorData/UpdateDoctor/5
+        /// <summary>
+        /// Updates a particular doctor in the system with POST Data input
+        /// </summary>
+        /// <param name="id">Represents the Doctor ID primary key</param>
+        /// <param name="doctor">JSON FORM DATA of a doctor</param>
+        /// <returns>
+        /// HEADER: 204 (Success, No Content Response)
+        /// or
+        /// HEADER: 400 (Bad Request)
+        /// or
+        /// HEADER: 404 (Not Found)
+        /// </returns>
+        /// <example>
+        /// POST: api/DoctorData/UpdateDoctor/5
+        /// FORM DATA: Doctor JSON Object
+        /// </example>
         [ResponseType(typeof(void))]
         [HttpPost]
         public IHttpActionResult UpdateDoctor(int id, Doctor Doctor)
@@ -122,7 +164,20 @@ namespace HospitalProjectMackenzie.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/DoctorData/AddDoctor
+        /// <summary>
+        /// Adds a doctor to the system
+        /// </summary>
+        /// <param name="doctor">JSON FORM DATA of a doctor</param>
+        /// <returns>
+        /// HEADER: 201 (Created)
+        /// CONTENT: Doctor ID, Doctor Data
+        /// or
+        /// HEADER: 400 (Bad Request)
+        /// </returns>
+        /// <example>
+        /// POST: api/DoctorData/AddDoctor
+        /// FORM DATA: Doctor JSON Object
+        /// </example>
         [HttpPost]
         [ResponseType(typeof(Doctor))]
         public IHttpActionResult AddDoctor(Doctor Doctor)
@@ -139,7 +194,19 @@ namespace HospitalProjectMackenzie.Controllers
             return CreatedAtRoute("DefaultApi", new { id = Doctor.DoctorID }, Doctor);
         }
 
-        // POST: api/DoctorData/DeleteDoctor/5
+        /// <summary>
+        /// Deletes a doctor from the system by it's ID.
+        /// </summary>
+        /// <param name="id">The primary key of the doctor</param>
+        /// <returns>
+        /// HEADER: 200 (OK)
+        /// or
+        /// HEADER: 404 (NOT FOUND)
+        /// </returns>
+        /// <example>
+        /// POST: api/DoctorData/DeleteDoctor/5
+        /// FORM DATA: (empty)
+        /// </example>
         [ResponseType(typeof(Doctor))]
         [HttpPost]
         public IHttpActionResult DeleteDoctor(int id)

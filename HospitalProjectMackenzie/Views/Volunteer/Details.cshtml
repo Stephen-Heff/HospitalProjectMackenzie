@@ -1,0 +1,15 @@
+﻿@model HospitalProjectMackenzie.Models.VolunteerDto
+@{
+    ViewBag.Title = "View";
+}
+
+<div>
+    <a href="/Volunteer/List">Go back to list</a>
+    |
+    <a href="/Volunteer/Edit/@Model.VolunteerID">Update</a>
+    |
+    <a style="color:#ab2020;" href="/Volunteer/DeleteConfirm/@Model.VolunteerID">Delete</a>
+</div>
+
+<h2>@Model.VolunteerFirstName @Model.VolunteerLastName</h2>
+<div>Department: <a href="/Department/Details/@Model.DepartmentID">@Model.DepartmentName</a></div>

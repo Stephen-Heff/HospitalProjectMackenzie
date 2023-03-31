@@ -39,8 +39,8 @@ namespace HospitalProjectMackenzie.Controllers
             string url = "DoctorData/findDoctor/" + id;
             HttpResponseMessage response = client.GetAsync(url).Result;
 
-            DoctorDto selectedDoctors = response.Content.ReadAsAsync<DoctorDto>().Result;
-            return View(selectedDoctors);
+            DoctorDto selectedDoctor = response.Content.ReadAsAsync<DoctorDto>().Result;
+            return View(selectedDoctor);
 
 
         }
@@ -87,8 +87,8 @@ namespace HospitalProjectMackenzie.Controllers
 
             string url = "DoctorData/findDoctor/" + id;
             HttpResponseMessage response = client.GetAsync(url).Result;
-            DoctorDto SelectedDoctor = response.Content.ReadAsAsync<DoctorDto>().Result;
-            ViewModel.SelectedDoctor = SelectedDoctor;
+            DoctorDto selectedDoctor = response.Content.ReadAsAsync<DoctorDto>().Result;
+            ViewModel.SelectedDoctor = selectedDoctor;
 
             url = "DepartmentData/ListDepartments";
             response = client.GetAsync(url).Result;

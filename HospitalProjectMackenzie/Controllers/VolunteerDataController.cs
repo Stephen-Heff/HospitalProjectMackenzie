@@ -17,7 +17,16 @@ namespace HospitalProjectMackenzie.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: api/VolunteerData/ListVolunteers
+        /// <summary>
+        /// Returns all volunteers in the system.
+        /// </summary>
+        /// <returns>
+        /// HEADER: 200 (OK)
+        /// CONTENT: all volunteers in the database, including their associated department.
+        /// </returns>
+        /// <example>
+        /// GET: api/VolunteerData/ListVolunteers
+        /// </example>
         [HttpGet]
         public IEnumerable<VolunteerDto> ListVolunteers()
         {
@@ -29,6 +38,8 @@ namespace HospitalProjectMackenzie.Controllers
                 VolunteerID = v.VolunteerID,
                 VolunteerFirstName = v.VolunteerFirstName,
                 VolunteerLastName = v.VolunteerLastName,
+                DepartmentID = v.DepartmentID,
+                DepartmentName = v.Department.DepartmentName,
             }));
 
             return (VolunteerDtos);
@@ -56,13 +67,27 @@ namespace HospitalProjectMackenzie.Controllers
             {
                 VolunteerID = v.VolunteerID,
                 VolunteerFirstName = v.VolunteerFirstName,
-                VolunteerLastName = v.VolunteerLastName
+                VolunteerLastName = v.VolunteerLastName,
+                DepartmentID = v.DepartmentID,
+                DepartmentName = v.Department.DepartmentName,
             }));
 
             return Ok(VolunteerDtos);
         }
 
-        // GET: api/VolunteerData/FindVolunteer/5
+        /// <summary>
+        /// Returns a particular volunteer in the system.
+        /// </summary>
+        /// <returns>
+        /// HEADER: 200 (OK)
+        /// CONTENT: A volunteer in the system matching up to the volunteer ID primary key
+        /// or
+        /// HEADER: 404 (NOT FOUND)
+        /// </returns>
+        /// <param name="id">The primary key of the volunteer</param>
+        /// <example>
+        /// GET: api/VolunteerData/FindVolunteer/5
+        /// </example>
         [ResponseType(typeof(Volunteer))]
         [HttpGet]
         public IHttpActionResult FindVolunteer(int id)
@@ -73,6 +98,8 @@ namespace HospitalProjectMackenzie.Controllers
                 VolunteerID = Volunteer.VolunteerID,
                 VolunteerFirstName = Volunteer.VolunteerFirstName,
                 VolunteerLastName = Volunteer.VolunteerLastName,
+                DepartmentID = Volunteer.DepartmentID,
+                DepartmentName = Volunteer.Department.DepartmentName,
             };
 
             if (Volunteer == null)
@@ -83,7 +110,22 @@ namespace HospitalProjectMackenzie.Controllers
             return Ok(VolunteerDto);
         }
 
-        // POST: api/VolunteerData/UpdateVolunteer/5
+        /// <summary>
+        /// Updates a particular volunteer in the system with POST Data input
+        /// </summary>
+        /// <param name="id">Represents the Volunteer ID primary key</param>
+        /// <param name="volunteer">JSON FORM DATA of a volunteer</param>
+        /// <returns>
+        /// HEADER: 204 (Success, No Content Response)
+        /// or
+        /// HEADER: 400 (Bad Request)
+        /// or
+        /// HEADER: 404 (Not Found)
+        /// </returns>
+        /// <example>
+        /// POST: api/VolunteerData/UpdateVolunteer/5
+        /// FORM DATA: Volunteer JSON Object
+        /// </example>
         [ResponseType(typeof(void))]
         [HttpPost]
         public IHttpActionResult UpdateVolunteer(int id, Volunteer Volunteer)
@@ -119,7 +161,20 @@ namespace HospitalProjectMackenzie.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/VolunteerData/AddVolunteer
+        /// <summary>
+        /// Adds a volunteer to the system
+        /// </summary>
+        /// <param name="volunteer">JSON FORM DATA of a volunteer</param>
+        /// <returns>
+        /// HEADER: 201 (Created)
+        /// CONTENT: Volunteer ID, Volunteer Data
+        /// or
+        /// HEADER: 400 (Bad Request)
+        /// </returns>
+        /// <example>
+        /// POST: api/VolunteerData/AddVolunteer
+        /// FORM DATA: Volunteer JSON Object
+        /// </example>
         [HttpPost]
         [ResponseType(typeof(Volunteer))]
         public IHttpActionResult AddVolunteer(Volunteer Volunteer)
@@ -136,7 +191,19 @@ namespace HospitalProjectMackenzie.Controllers
             return CreatedAtRoute("DefaultApi", new { id = Volunteer.VolunteerID }, Volunteer);
         }
 
-        // POST: api/VolunteerData/DeleteVolunteer/5
+        /// <summary>
+        /// Deletes a volunteer from the system by it's ID.
+        /// </summary>
+        /// <param name="id">The primary key of the volunteer</param>
+        /// <returns>
+        /// HEADER: 200 (OK)
+        /// or
+        /// HEADER: 404 (NOT FOUND)
+        /// </returns>
+        /// <example>
+        /// POST: api/VolunteerData/DeleteVolunteer/5
+        /// FORM DATA: (empty)
+        /// </example>
         [ResponseType(typeof(Volunteer))]
         [HttpPost]
         public IHttpActionResult DeleteVolunteer(int id)
