@@ -80,7 +80,7 @@ namespace HospitalProjectMackenzie.Controllers
             PatientDto ViewModel = new PatientDto();
 
 
-            string url = "patientdata/findpatient/" + id;
+            string url = "findpatient/" + id;
             HttpResponseMessage response = client.GetAsync(url).Result;
             PatientDto SelectedPatient = response.Content.ReadAsAsync<PatientDto>().Result;
             ViewModel = SelectedPatient;
@@ -94,7 +94,7 @@ namespace HospitalProjectMackenzie.Controllers
         [HttpPost]
         public ActionResult Update(int id, Patient patient)
         {
-            string url = "/updatepatient/" + id;
+            string url = "updatepatient/" + id;
             string jsonpayload = jss.Serialize(patient);
             HttpContent content = new StringContent(jsonpayload);
             content.Headers.ContentType.MediaType = "application/json";

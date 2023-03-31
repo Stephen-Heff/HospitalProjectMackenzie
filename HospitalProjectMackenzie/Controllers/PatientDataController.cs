@@ -99,7 +99,7 @@ namespace HospitalProjectMackenzie.Controllers
         // POST: api/PatientData/AddPatient
         [ResponseType(typeof(Patient))]
         [HttpPost]
-        public IHttpActionResult PostPatient(Patient patient)
+        public IHttpActionResult AddPatient(Patient patient)
         {
             if (!ModelState.IsValid)
             {
@@ -126,7 +126,7 @@ namespace HospitalProjectMackenzie.Controllers
             db.Patients.Remove(patient);
             db.SaveChanges();
 
-            return Ok(patient);
+            return Ok();
         }
 
         protected override void Dispose(bool disposing)
