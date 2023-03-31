@@ -24,14 +24,42 @@ namespace HospitalProjectMackenzie.Controllers
             List<Volunteer> Volunteers = db.Volunteers.ToList();
             List<VolunteerDto> VolunteerDtos = new List<VolunteerDto>();
 
-            Volunteers.ForEach(d => VolunteerDtos.Add(new VolunteerDto()
+            Volunteers.ForEach(v => VolunteerDtos.Add(new VolunteerDto()
             {
-                VolunteerID = d.VolunteerID,
-                VolunteerFirstName = d.VolunteerFirstName,
-                VolunteerLastName = d.VolunteerLastName,
+                VolunteerID = v.VolunteerID,
+                VolunteerFirstName = v.VolunteerFirstName,
+                VolunteerLastName = v.VolunteerLastName,
             }));
 
             return (VolunteerDtos);
+        }
+
+        /// <summary>
+        /// Returns all Volunteers in the system associated with a particular department.
+        /// </summary>
+        /// <returns>
+        /// HEADER: 200 (OK)
+        /// CONTENT: all Volunteers in the database responsible for a particular department
+        /// </returns>
+        /// <param name="id">Department Primary Key</param>
+        /// <example>
+        /// GET: api/VolunteerData/ListVolunteersForDepartment/1
+        /// </example>
+        [HttpGet]
+        [ResponseType(typeof(VolunteerDto))]
+        public IHttpActionResult ListVolunteersForDepartment(int id)
+        {
+            List<Volunteer> Volunteers = db.Volunteers.Where(d => d.DepartmentID == id).ToList();
+            List<VolunteerDto> VolunteerDtos = new List<VolunteerDto>();
+
+            Volunteers.ForEach(v => VolunteerDtos.Add(new VolunteerDto()
+            {
+                VolunteerID = v.VolunteerID,
+                VolunteerFirstName = v.VolunteerFirstName,
+                VolunteerLastName = v.VolunteerLastName
+            }));
+
+            return Ok(VolunteerDtos);
         }
 
         // GET: api/VolunteerData/FindVolunteer/5

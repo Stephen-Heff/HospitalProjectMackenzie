@@ -36,13 +36,35 @@ namespace HospitalProjectMackenzie.Controllers
         // GET: Department/Details/5
         public ActionResult Details(int id)
         {
+            DetailsDepartment ViewModel = new DetailsDepartment();
+
             string url = "departmentdata/finddepartment/" + id;
             HttpResponseMessage response = client.GetAsync(url).Result;
 
-            DepartmentDto selecteddepartments = response.Content.ReadAsAsync<DepartmentDto>().Result;
-            return View(selecteddepartments);
+            Debug.WriteLine("The response code is ");
+            Debug.WriteLine(response.StatusCode);
 
+            DepartmentDto SelectedDepartment = response.Content.ReadAsAsync<DepartmentDto>().Result;
+            Debug.WriteLine("department received : ");
+            Debug.WriteLine(SelectedDepartment.DepartmentName);
 
+            ViewModel.SelectedDepartment = SelectedDepartment;
+
+            //show associated doctors with this department
+            url = "doctordata/listdoctorsfordepartment/" + id;
+            response = client.GetAsync(url).Result;
+            IEnumerable<DoctorDto> ResponsibleDoctors = response.Content.ReadAsAsync<IEnumerable<DoctorDto>>().Result;
+
+            ViewModel.ResponsibleDoctors = ResponsibleDoctors;
+
+            //show associated volunteers with this department
+            url = "volunteerdata/listvolunteersfordepartment/" + id;
+            response = client.GetAsync(url).Result;
+            IEnumerable<VolunteerDto> ResponsibleVolunteers = response.Content.ReadAsAsync<IEnumerable<VolunteerDto>>().Result;
+
+            ViewModel.ResponsibleVolunteers = ResponsibleVolunteers;
+
+            return View(ViewModel);
         }
 
         // GET: Department/New
@@ -85,10 +107,18 @@ namespace HospitalProjectMackenzie.Controllers
         {
             UpdateDepartment ViewModel = new UpdateDepartment();
 
+            //the existing department information
             string url = "departmentdata/finddepartment/" + id;
             HttpResponseMessage response = client.GetAsync(url).Result;
             DepartmentDto SelectedDepartment = response.Content.ReadAsAsync<DepartmentDto>().Result;
             ViewModel.SelectedDepartment = SelectedDepartment;
+
+            // all sites to choose from when updating this department
+            url = "sitedata/listsites/";
+            response = client.GetAsync(url).Result;
+            IEnumerable<SiteDto> Sites = response.Content.ReadAsAsync<IEnumerable<SiteDto>>().Result;
+
+            ViewModel.Sites = Sites;
 
             return View(ViewModel);
         }

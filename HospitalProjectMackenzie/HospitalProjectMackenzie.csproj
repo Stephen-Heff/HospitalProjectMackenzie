@@ -286,6 +286,8 @@
     <Compile Include="Models\Amenity.cs" />
     <Compile Include="Models\Site.cs" />
     <Compile Include="Models\ViewModels\DetailsBill.cs" />
+    <Compile Include="Models\ViewModels\DetailsRoom.cs" />
+    <Compile Include="Models\ViewModels\DetailsDepartment.cs" />
     <Compile Include="Models\ViewModels\SelectedBill.cs" />
     <Compile Include="Models\ViewModels\UpdateRoom.cs" />
     <Compile Include="Models\ViewModels\UpdateDepartment.cs" />
@@ -415,6 +417,8 @@
     <Content Include="Views\Room\Error.cshtml" />
     <Content Include="Views\Room\List.cshtml" />
     <Content Include="Views\Room\New.cshtml" />
+    <Content Include="Views\Department\Details.cshtml" />
+    <Content Include="Views\Room\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

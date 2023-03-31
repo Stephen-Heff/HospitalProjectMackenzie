@@ -14,14 +14,14 @@
     <div>
         <label for="DepartmentID">Department:</label>
         <select name="DepartmentID">
-            @foreach (var room in Model.Departments)
+            @foreach (var Department in Model.Departments)
             {
                 string selected = "";
-                if (room.SiteID == Model.SelectedRoom.DepartmentID)
+                if (Department.DepartmentID == Model.SelectedRoom.DepartmentID)
                 {
                     selected = "selected";
                 }
-                <option value="@room.DepartmentID">@room.DepartmentName</option>
+                <option value="@Department.DepartmentID" @selected>@Department.DepartmentName</option>
             }
         </select>
     </div>

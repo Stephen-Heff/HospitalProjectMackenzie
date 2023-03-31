@@ -1,0 +1,23 @@
+﻿@model HospitalProjectMackenzie.Models.ViewModels.DetailsRoom
+@{
+    ViewBag.Title = "View";
+}
+
+<div>
+    <a href="/Room/List">Go back to list</a>
+    |
+    <a href="/Room/Edit/@Model.SelectedRoom.RoomID">Update</a>
+    |
+    <a style="color:#ab2020;" href="/Room/DeleteConfirm/@Model.SelectedRoom.RoomID">Delete</a>
+</div>
+
+<h2>@Model.SelectedRoom.RoomName</h2>
+<div>Department: <a href="/Department/Details/@Model.SelectedRoom.DepartmentID">@Model.SelectedRoom.DepartmentName</a></div>
+
+<div>
+    <h3>Appointments Scheduled at @Model.SelectedRoom.RoomName:</h3>
+    @foreach (var appointment in Model.ScheduledAppointments)
+    {
+        <a href="/Appointment/Details/@appointment.AppointmentID">@appointment.AppointmentName</a><br />
+    }
+</div>

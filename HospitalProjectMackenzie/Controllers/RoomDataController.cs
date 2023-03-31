@@ -75,5 +75,110 @@ namespace HospitalProjectMackenzie.Controllers
         }
 
 
+        // GET: api/RoomData/FindRoom/5
+        [ResponseType(typeof(RoomDto))]
+        [HttpGet]
+        public IHttpActionResult FindRoom(int id)
+        {
+            Room Room = db.Rooms.Find(id);
+            RoomDto RoomDto = new RoomDto()
+            {
+                RoomID = Room.RoomID,
+                RoomName = Room.RoomName,
+                DepartmentID = Room.Department.DepartmentID,
+                DepartmentName = Room.Department.DepartmentName
+            };
+
+            if (Room == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(RoomDto);
+        }
+
+        // POST: api/RoomData/UpdateRoom/5
+        [ResponseType(typeof(void))]
+        [HttpPost]
+        public IHttpActionResult UpdateRoom(int id, Room Room)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            if (id != Room.RoomID)
+            {
+                return BadRequest();
+            }
+
+            db.Entry(Room).State = EntityState.Modified;
+
+            try
+            {
+                db.SaveChanges();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!RoomExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return StatusCode(HttpStatusCode.NoContent);
+        }
+
+        // POST: api/RoomData/AddRoom
+        [HttpPost]
+        [ResponseType(typeof(Room))]
+        public IHttpActionResult AddRoom(Room Room)
+        {
+            Debug.WriteLine("AddRoom");
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            db.Rooms.Add(Room);
+            db.SaveChanges();
+
+            return CreatedAtRoute("DefaultApi", new { id = Room.RoomID }, Room);
+        }
+
+        // POST: api/RoomData/DeleteRoom/5
+        [ResponseType(typeof(Room))]
+        [HttpPost]
+        public IHttpActionResult DeleteRoom(int id)
+        {
+            Room Room = db.Rooms.Find(id);
+            if (Room == null)
+            {
+                return NotFound();
+            }
+
+            db.Rooms.Remove(Room);
+            db.SaveChanges();
+
+            return Ok();
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                db.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        private bool RoomExists(int id)
+        {
+            return db.Rooms.Count(e => e.RoomID == id) > 0;
+        }
     }
 }

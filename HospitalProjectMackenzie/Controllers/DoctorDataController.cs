@@ -35,6 +35,35 @@ namespace HospitalProjectMackenzie.Controllers
             return (DoctorDtos);
         }
 
+        /// <summary>
+        /// Returns all Doctors in the system associated with a particular department.
+        /// </summary>
+        /// <returns>
+        /// HEADER: 200 (OK)
+        /// CONTENT: all Doctors in the database responsible for a particular department
+        /// </returns>
+        /// <param name="id">Department Primary Key</param>
+        /// <example>
+        /// GET: api/DoctorData/ListDoctorsForDepartment/1
+        /// </example>
+        [HttpGet]
+        [ResponseType(typeof(DoctorDto))]
+        public IHttpActionResult ListDoctorsForDepartment(int id)
+        {
+            List<Doctor> Doctors = db.Doctors.Where(d => d.DepartmentID == id).ToList();
+            List<DoctorDto> DoctorDtos = new List<DoctorDto>();
+
+            Doctors.ForEach(d => DoctorDtos.Add(new DoctorDto()
+            {
+                DoctorID = d.DoctorID,
+                DoctorFirstName = d.DoctorFirstName,
+                DoctorLastName = d.DoctorLastName,
+                DoctorEmployeeNumber = d.DoctorEmployeeNumber
+            }));
+
+            return Ok(DoctorDtos);
+        }
+
         // GET: api/DoctorData/FindDoctor/5
         [ResponseType(typeof(Doctor))]
         [HttpGet]

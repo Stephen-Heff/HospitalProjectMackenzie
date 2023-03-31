@@ -35,6 +35,36 @@ namespace HospitalProjectMackenzie.Controllers
             return (AppointmentDtos);
         }
 
+        /// <summary>
+        /// Returns all appointments in the system associated with a particular room.
+        /// </summary>
+        /// <returns>
+        /// HEADER: 200 (OK)
+        /// CONTENT: all appointments in the database responsible for a particular room
+        /// </returns>
+        /// <param name="id">Room Primary Key</param>
+        /// <example>
+        /// GET: api/AppointmentData/ListAppointmentsForRoom/1
+        /// </example>
+        [HttpGet]
+        [ResponseType(typeof(AppointmentDto))]
+        public IHttpActionResult ListAppointmentsForRoom(int id)
+        {
+            List<Appointment> Appointments = db.Appointments.Where(a => a.RoomID == id).ToList();
+            List<AppointmentDto> AppointmentDtos = new List<AppointmentDto>();
+
+            Appointments.ForEach(a => AppointmentDtos.Add(new AppointmentDto()
+            {
+                AppointmentID = a.AppointmentID,
+                AppointmentName = a.AppointmentName,
+                PatientFirstName = a.Patient.PatientFirstName,
+                PatientLastName = a.Patient.PatientLastName,
+                PatientCellPhone = a.Patient.PatientCellPhone
+            }));
+
+            return Ok(AppointmentDtos);
+        }
+
         // GET: api/AppointmentData/FindAppointment/5
         [ResponseType(typeof(Appointment))]
         [HttpGet]

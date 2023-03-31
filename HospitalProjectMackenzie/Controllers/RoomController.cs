@@ -36,13 +36,28 @@ namespace HospitalProjectMackenzie.Controllers
         // GET: Room/Details/5
         public ActionResult Details(int id)
         {
+            DetailsRoom ViewModel = new DetailsRoom();
+
             string url = "roomdata/findroom/" + id;
             HttpResponseMessage response = client.GetAsync(url).Result;
 
-            RoomDto selectedrooms = response.Content.ReadAsAsync<RoomDto>().Result;
-            return View(selectedrooms);
+            Debug.WriteLine("The response code is ");
+            Debug.WriteLine(response.StatusCode);
 
+            RoomDto SelectedRoom = response.Content.ReadAsAsync<RoomDto>().Result;
+            Debug.WriteLine("room received : ");
+            Debug.WriteLine(SelectedRoom.RoomName);
 
+            ViewModel.SelectedRoom = SelectedRoom;
+
+            //show scheduled appointments with this room
+            url = "appointmentdata/listappointmentsforroom/" + id;
+            response = client.GetAsync(url).Result;
+            IEnumerable<AppointmentDto> ScheduledAppointments = response.Content.ReadAsAsync<IEnumerable<AppointmentDto>>().Result;
+
+            ViewModel.ScheduledAppointments = ScheduledAppointments;
+
+            return View(ViewModel);
         }
 
         // GET: Room/New
@@ -89,6 +104,11 @@ namespace HospitalProjectMackenzie.Controllers
             HttpResponseMessage response = client.GetAsync(url).Result;
             RoomDto SelectedRoom = response.Content.ReadAsAsync<RoomDto>().Result;
             ViewModel.SelectedRoom = SelectedRoom;
+
+            url = "DepartmentData/ListDepartments";
+            response = client.GetAsync(url).Result;
+            IEnumerable<DepartmentDto> departments = response.Content.ReadAsAsync<IEnumerable<DepartmentDto>>().Result;
+            ViewModel.Departments = departments;
 
             return View(ViewModel);
         }

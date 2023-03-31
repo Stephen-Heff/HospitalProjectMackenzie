@@ -35,16 +35,16 @@ namespace HospitalProjectMackenzie.Controllers
             List<Department> Departments = db.Departments.ToList();
             List<DepartmentDto> DepartmentDtos = new List<DepartmentDto>();
 
-            Departments.ForEach(a => DepartmentDtos.Add(new DepartmentDto()
+            Departments.ForEach(d => DepartmentDtos.Add(new DepartmentDto()
             {
-                DepartmentID = a.DepartmentID,
-                DepartmentName = a.DepartmentName,
-                SiteID = a.Site.SiteID,
-                SiteName = a.Site.SiteName,
-                SiteDescription = a.Site.SiteDescription,
-                SiteAddress = a.Site.SiteAddress,
-                SiteNumber = a.Site.SiteNumber,
-                SiteImageUrl = a.Site.SiteImageUrl
+                DepartmentID = d.DepartmentID,
+                DepartmentName = d.DepartmentName,
+                SiteID = d.Site.SiteID,
+                SiteName = d.Site.SiteName,
+                SiteDescription = d.Site.SiteDescription,
+                SiteAddress = d.Site.SiteAddress,
+                SiteNumber = d.Site.SiteNumber,
+                SiteImageUrl = d.Site.SiteImageUrl
             }));
 
             return Ok(DepartmentDtos);
@@ -65,19 +65,19 @@ namespace HospitalProjectMackenzie.Controllers
         [ResponseType(typeof(DepartmentDto))]
         public IHttpActionResult ListDepartmentsForSite(int id)
         {
-            List<Department> Departments = db.Departments.Where(a => a.SiteID == id).ToList();
+            List<Department> Departments = db.Departments.Where(d => d.SiteID == id).ToList();
             List<DepartmentDto> DepartmentDtos = new List<DepartmentDto>();
 
-            Departments.ForEach(a => DepartmentDtos.Add(new DepartmentDto()
+            Departments.ForEach(d => DepartmentDtos.Add(new DepartmentDto()
             {
-                DepartmentID = a.DepartmentID,
-                DepartmentName = a.DepartmentName,
-                SiteID = a.Site.SiteID,
-                SiteName = a.Site.SiteName,
-                SiteDescription = a.Site.SiteDescription,
-                SiteAddress = a.Site.SiteAddress,
-                SiteNumber = a.Site.SiteNumber,
-                SiteImageUrl = a.Site.SiteImageUrl
+                DepartmentID = d.DepartmentID,
+                DepartmentName = d.DepartmentName,
+                SiteID = d.Site.SiteID,
+                SiteName = d.Site.SiteName,
+                SiteDescription = d.Site.SiteDescription,
+                SiteAddress = d.Site.SiteAddress,
+                SiteNumber = d.Site.SiteNumber,
+                SiteImageUrl = d.Site.SiteImageUrl
             }));
 
             return Ok(DepartmentDtos);

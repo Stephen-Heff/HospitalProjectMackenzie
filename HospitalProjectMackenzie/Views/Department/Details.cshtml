@@ -1,0 +1,31 @@
+﻿@model HospitalProjectMackenzie.Models.ViewModels.DetailsDepartment
+@{
+    ViewBag.Title = "View";
+}
+
+<div>
+    <a href="/Department/List">Go back to list</a>
+    |
+    <a href="/Department/Edit/@Model.SelectedDepartment.DepartmentID">Update</a>
+    |
+    <a style="color:#ab2020;" href="/Department/DeleteConfirm/@Model.SelectedDepartment.DepartmentID">Delete</a>
+</div>
+
+<h2>@Model.SelectedDepartment.DepartmentName</h2>
+<div>Site: <a href="/Site/Details/@Model.SelectedDepartment.SiteID">@Model.SelectedDepartment.SiteName</a></div>
+
+<div>
+    <h3>Doctors Responsible for @Model.SelectedDepartment.DepartmentName:</h3>
+    @foreach (var doctor in Model.ResponsibleDoctors)
+    {
+        <a href="/Doctor/Details/@doctor.DoctorID">@doctor.DoctorFirstName @doctor.DoctorLastName</a><br />
+    }
+</div>
+
+<div>
+    <h3>Volunteers Responsible for @Model.SelectedDepartment.DepartmentName:</h3>
+    @foreach (var volunteer in Model.ResponsibleVolunteers)
+    {
+        <a href="/Volunteer/Details/@volunteer.VolunteerID">@volunteer.VolunteerFirstName @volunteer.VolunteerLastName</a><br />
+    }
+</div>
