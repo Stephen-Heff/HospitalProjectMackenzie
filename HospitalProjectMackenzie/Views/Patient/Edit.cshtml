@@ -1,29 +1,35 @@
-﻿@model HospitalProjectMackenzie.Models.ViewModels.UpdatePatient
+﻿@model HospitalProjectMackenzie.Models.PatientDto
 @{
     ViewBag.Title = "Edit";
 }
 
+<br />
+
+<ul>
+    <li><a href="/Patient/Details/@Model.PatientID">Go back to @Model.PatientFirstName, @Model.PatientLastName Details</a></li>
+</ul>
+
 <h2>Update Patient</h2>
 
-<form action="/Patient/Update/@Model.SelectedPatient.PatientID" method="POST">
+<form action="/Patient/Update/@Model.PatientID" method="POST">
     <div style="display:none;">
         @* Pass through the patient ID *@
-        <input type="text" name="PatientID" value="@Model.SelectedPatient.PatientID" />
+        <input type="text" name="PatientID" value="@Model.PatientID" />
     </div>
     <div>
-        <label>First Name:</label> <input type="text" name="PatientFirstName" />
+        <label>First Name:</label> <input type="text" name="PatientFirstName"  value="@Model.PatientFirstName"/>
     </div>
     <div>
-        <label>Last Name:</label> <input type="text" name="PatientLastName" />
+        <label>Last Name:</label> <input type="text" name="PatientLastName" value="@Model.PatientLastName"/>
     </div>
     <div>
-        <label>Address :</label> <input type="text" name="PatientAddress" />
+        <label>Address :</label> <input type="text" name="PatientAddress" value="@Model.PatientAddress" />
     </div>
     <div>
-        <label>DOB:</label> <input type="text" name="PatientDateOfBirth" />
+        <label>DOB:</label> <input type="date" name="PatientDateOfBirth"  value="@Model.PatientDateOfBirth" />
     </div>
     <div>
-        <label>PatientCellPhone: </label> <input type="text" name="PatientCellPhone" />
+        <label>PatientCellPhone: </label> <input type="text" name="PatientCellPhone" value="@Model.PatientCellPhone"  />
     </div>
     <div>
         <input type="submit" value="Update Patient" />

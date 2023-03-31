@@ -54,7 +54,7 @@ namespace HospitalProjectMackenzie.Controllers
         [HttpPost]
         public ActionResult Create(Appointment appointment)
         {
-            string url = "appointmentdata/addappointment";
+            string url = "addappointment";
 
 
             string jsonpayload = jss.Serialize(appointment);

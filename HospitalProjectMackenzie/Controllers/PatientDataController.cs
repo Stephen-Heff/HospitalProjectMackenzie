@@ -63,7 +63,7 @@ namespace HospitalProjectMackenzie.Controllers
         // POST: api/PatientData/UpdatePatient/5
         [ResponseType(typeof(void))]
         [HttpPost]
-        public IHttpActionResult PutPatient(int id, Patient patient)
+        public IHttpActionResult UpdatePatient(int id, Patient patient)
         {
             if (!ModelState.IsValid)
             {
