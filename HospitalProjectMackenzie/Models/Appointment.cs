@@ -44,15 +44,23 @@ namespace HospitalProjectMackenzie.Models
     {
         public int AppointmentID { get; set; }
         public string AppointmentName { get; set; }
+        public int PatientID { get; set; }
 
         public string PatientFirstName { get; set; }
 
         public string PatientLastName { get; set; }
 
-        public DateTime PatientDateOfBirth { get; set; }
+        public string PatientDateOfBirth { get; set; }
 
         public string PatientCellPhone { get; set; }
 
+        public int DoctorID { get; set; }
+        public string DoctorFirstName { get; set; }
+
+        public string DoctorLastName { get; set; }
+
+        public int RoomID { get; set; }
+        public string RoomName { get; set; }
     }
 
 }

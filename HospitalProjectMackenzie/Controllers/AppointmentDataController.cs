@@ -27,10 +27,17 @@ namespace HospitalProjectMackenzie.Controllers
             {
                 AppointmentID = a.AppointmentID,
                 AppointmentName = a.AppointmentName,
+                PatientID = a.PatientID,
                 PatientFirstName = a.Patient.PatientFirstName,
                 PatientLastName = a.Patient.PatientLastName,
-                PatientCellPhone = a.Patient.PatientCellPhone
-            }));
+                PatientCellPhone = a.Patient.PatientCellPhone,
+                DoctorID = a.DoctorID,
+                DoctorFirstName = a.Doctor.DoctorFirstName,
+                DoctorLastName = a.Doctor.DoctorLastName,
+                RoomID = a.RoomID,
+                RoomName = a.Room.RoomName
+                
+            })); ;
 
             return (AppointmentDtos);
         }
@@ -57,9 +64,88 @@ namespace HospitalProjectMackenzie.Controllers
             {
                 AppointmentID = a.AppointmentID,
                 AppointmentName = a.AppointmentName,
+                PatientID = a.PatientID,
                 PatientFirstName = a.Patient.PatientFirstName,
                 PatientLastName = a.Patient.PatientLastName,
-                PatientCellPhone = a.Patient.PatientCellPhone
+                PatientCellPhone = a.Patient.PatientCellPhone,
+                DoctorID = a.DoctorID,
+                DoctorFirstName = a.Doctor.DoctorFirstName,
+                DoctorLastName = a.Doctor.DoctorLastName,
+                RoomID = a.RoomID,
+                RoomName = a.Room.RoomName
+            }));
+
+            return Ok(AppointmentDtos);
+        }
+
+        /// <summary>
+        /// Returns all appointments in the system associated with a particular patient.
+        /// </summary>
+        /// <returns>
+        /// HEADER: 200 (OK)
+        /// CONTENT: all appointments in the database responsible for a particular patient
+        /// </returns>
+        /// <param name="id">Patient Primary Key</param>
+        /// <example>
+        /// GET: api/AppointmentData/ListAppointmentsForPatient/1
+        /// </example>
+        [HttpGet]
+        [ResponseType(typeof(AppointmentDto))]
+        public IHttpActionResult ListAppointmentsForPatient(int id)
+        {
+            List<Appointment> Appointments = db.Appointments.Where(a => a.PatientID == id).ToList();
+            List<AppointmentDto> AppointmentDtos = new List<AppointmentDto>();
+
+            Appointments.ForEach(a => AppointmentDtos.Add(new AppointmentDto()
+            {
+                AppointmentID = a.AppointmentID,
+                AppointmentName = a.AppointmentName,
+                PatientID = a.PatientID,
+                PatientFirstName = a.Patient.PatientFirstName,
+                PatientLastName = a.Patient.PatientLastName,
+                PatientCellPhone = a.Patient.PatientCellPhone,
+                DoctorID = a.DoctorID,
+                DoctorFirstName = a.Doctor.DoctorFirstName,
+                DoctorLastName = a.Doctor.DoctorLastName,
+                RoomID = a.RoomID,
+                RoomName = a.Room.RoomName
+            }));
+
+            return Ok(AppointmentDtos);
+        }
+
+
+        /// <summary>
+        /// Returns all appointments in the system associated with a particular doctor.
+        /// </summary>
+        /// <returns>
+        /// HEADER: 200 (OK)
+        /// CONTENT: all appointments in the database responsible for a particular doctor
+        /// </returns>
+        /// <param name="id">Doctor Primary Key</param>
+        /// <example>
+        /// GET: api/AppointmentData/ListAppointmentsForDoctor/1
+        /// </example>
+        [HttpGet]
+        [ResponseType(typeof(AppointmentDto))]
+        public IHttpActionResult ListAppointmentsForDoctor(int id)
+        {
+            List<Appointment> Appointments = db.Appointments.Where(a => a.DoctorID == id).ToList();
+            List<AppointmentDto> AppointmentDtos = new List<AppointmentDto>();
+
+            Appointments.ForEach(a => AppointmentDtos.Add(new AppointmentDto()
+            {
+                AppointmentID = a.AppointmentID,
+                AppointmentName = a.AppointmentName,
+                PatientID = a.PatientID,
+                PatientFirstName = a.Patient.PatientFirstName,
+                PatientLastName = a.Patient.PatientLastName,
+                PatientCellPhone = a.Patient.PatientCellPhone,
+                DoctorID = a.DoctorID,
+                DoctorFirstName = a.Doctor.DoctorFirstName,
+                DoctorLastName = a.Doctor.DoctorLastName,
+                RoomID = a.RoomID,
+                RoomName = a.Room.RoomName
             }));
 
             return Ok(AppointmentDtos);
@@ -75,9 +161,15 @@ namespace HospitalProjectMackenzie.Controllers
             {
                 AppointmentID = Appointment.AppointmentID,
                 AppointmentName = Appointment.AppointmentName,
+                PatientID = Appointment.Patient.PatientID,
                 PatientFirstName = Appointment.Patient.PatientFirstName,
                 PatientLastName = Appointment.Patient.PatientLastName,
-                PatientCellPhone = Appointment.Patient.PatientCellPhone
+                PatientCellPhone = Appointment.Patient.PatientCellPhone,
+                DoctorID = Appointment.Doctor.DoctorID,
+                DoctorFirstName = Appointment.Doctor.DoctorFirstName,
+                DoctorLastName = Appointment.Doctor.DoctorLastName,
+                RoomID = Appointment.Room.RoomID,
+                RoomName = Appointment.Room.RoomName
             };
 
             if (Appointment == null)

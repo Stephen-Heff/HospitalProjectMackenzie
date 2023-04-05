@@ -5,5 +5,14 @@
 }
 
 <h2>Details</h2>
-<a href="/Appointment/List">Go back to list</a>
-<div>Address: @Model.AppointmentName</div>
+
+<br />
+
+<ul>
+    <li><a href="/Appointment/List">Go back to list</a></li>
+    <li><a href="/Appointment/Edit/@Model.AppointmentID">Edit</a></li>
+    <li><a href="/Appointment/DeleteConfirm/@Model.AppointmentID">Delete</a></li>
+</ul>
+
+
+<div>Name: @Model.AppointmentName</div>

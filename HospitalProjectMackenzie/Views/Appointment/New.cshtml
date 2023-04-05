@@ -1,4 +1,4 @@
-﻿@model IEnumerable<HospitalProjectMackenzie.Models.AppointmentDto>
+﻿@model IEnumerable<HospitalProjectMackenzie.Models.PatientDto>
 @{
     ViewBag.Title = "Create";
 }
@@ -9,6 +9,21 @@
     <div>
         <label>Name:</label> <input type="text" name="AppointmentName" />
     </div>
+
+   <div>
+        <label for="PatientID">Patient:</label>
+        <select name="PatientID">
+            @foreach (var patient in Model)
+            {
+                <option value="@patient.PatientFirstName">@patient.PatientFirstName</option>
+                <option value="@patient.PatientLastName">@patient.PatientLastName</option>
+            }
+        </select>
+    </div>
+
+
+
+
     <div>
         <input type="submit" value="Add Appointment" />
 
