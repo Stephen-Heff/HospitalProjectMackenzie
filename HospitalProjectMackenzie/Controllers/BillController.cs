@@ -32,7 +32,7 @@ namespace HospitalProjectMackenzie.Controllers
             return View(bills);
         }
 
-        // GET: Bill/Details/5
+        // GET: Bill/Details/5     
         public ActionResult Details(int id)
         {
             DetailsBill ViewModel = new DetailsBill();
@@ -48,10 +48,14 @@ namespace HospitalProjectMackenzie.Controllers
         }
 
 
-        // POST: Bill/Create
-        public ActionResult Create()
+        // GET: Bill/New
+        public ActionResult New()
         {
-            return View();
+            string url = "AppointmentData/ListAppointments/";
+            HttpResponseMessage response = client.GetAsync(url).Result;
+            IEnumerable<AppointmentDto> appointments = response.Content.ReadAsAsync<IEnumerable<AppointmentDto>>().Result;
+
+            return View(appointments);
         }
 
         // POST: Bill/Create

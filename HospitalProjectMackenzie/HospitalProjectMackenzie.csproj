@@ -285,10 +285,12 @@
     <Compile Include="Models\Department.cs" />
     <Compile Include="Models\Amenity.cs" />
     <Compile Include="Models\Site.cs" />
+    <Compile Include="Models\ViewModels\DetailsPayment.cs" />
     <Compile Include="Models\ViewModels\DetailsBill.cs" />
     <Compile Include="Models\ViewModels\DetailsRoom.cs" />
     <Compile Include="Models\ViewModels\DetailsDepartment.cs" />
     <Compile Include="Models\ViewModels\SelectedBill.cs" />
+    <Compile Include="Models\ViewModels\UpdatePayment.cs" />
     <Compile Include="Models\ViewModels\UpdateRoom.cs" />
     <Compile Include="Models\ViewModels\UpdateDepartment.cs" />
     <Compile Include="Models\ViewModels\UpdateVolunteer.cs" />
@@ -421,10 +423,16 @@
     <Content Include="Views\Room\Details.cshtml" />
     <Content Include="Views\Doctor\Details.cshtml" />
     <Content Include="Views\Volunteer\Details.cshtml" />
+    <Content Include="Views\Bill\Details.cshtml" />
+    <Content Include="Views\Payment\DeleteConfirm.cshtml" />
+    <Content Include="Views\Payment\Details.cshtml" />
+    <Content Include="Views\Payment\Edit.cshtml" />
+    <Content Include="Views\Payment\Error.cshtml" />
+    <Content Include="Views\Payment\List.cshtml" />
+    <Content Include="Views\Payment\New.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Payment\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

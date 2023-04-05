@@ -29,7 +29,7 @@ namespace HospitalProjectMackenzie.Controllers
                 BillAmount = b.BillAmount,
                 AppointmentID = b.Appointment.AppointmentID
             }));
-            
+
 
             return BillDtos;
         }
