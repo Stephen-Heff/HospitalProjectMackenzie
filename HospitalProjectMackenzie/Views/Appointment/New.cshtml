@@ -15,8 +15,8 @@
         <select name="PatientID">
             @foreach (var patient in Model)
             {
-                <option value="@patient.PatientFirstName">@patient.PatientFirstName</option>
-                <option value="@patient.PatientLastName">@patient.PatientLastName</option>
+            <option value="@patient.PatientFirstName @patient.PatientLastName">@patient.PatientFirstName @patient.PatientLastName</option>
+       
             }
         </select>
     </div>

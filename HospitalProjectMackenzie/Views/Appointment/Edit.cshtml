@@ -7,13 +7,20 @@
 <h2>Update Appointment</h2>
 
 
+<br />
+
+<ul>
+    <li><a href="/Appointment/Details/@Model.SelectedAppointment.AppointmentID">Go back to @Model.SelectedAppointment.AppointmentName</a></li>
+</ul>
+
+
 <form action="/Patient/Update/@Model.SelectedAppointment.AppointmentID" method="POST">
     <div style="display:none;">
         @* Pass through the Appointment ID *@
         <input type="text" name="AppointmentID" value="@Model.SelectedAppointment.AppointmentID" />
     </div>
     <div>
-        <label>Name:</label> <input type="text" name="AppointmentName" />
+        <label>Name:</label> <input type="text" name="AppointmentName" value="@Model.SelectedAppointment.AppointmentName" />
     </div>
     <div>
         <input type="submit" value="Update Appointment" />
