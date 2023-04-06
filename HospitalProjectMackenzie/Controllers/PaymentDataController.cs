@@ -17,6 +17,7 @@ namespace HospitalProjectMackenzie.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: api/PaymentData/ListPayments
+        [HttpGet]
         public IEnumerable<PaymentDto> ListPayments()
         {
             List<Payment> Payments = db.Payments.ToList();
