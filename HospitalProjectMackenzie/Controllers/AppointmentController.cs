@@ -47,7 +47,20 @@ namespace HospitalProjectMackenzie.Controllers
         // GET: Appointment/New
         public ActionResult New()
         {
-            return View();
+            string url = "listappointments/";
+            HttpResponseMessage response = client.GetAsync(url).Result;
+            IEnumerable<PatientDto> patients = response.Content.ReadAsAsync<IEnumerable<PatientDto>>().Result;
+            return View(patients);
+
+            url = "listappointments/";
+            response = client.GetAsync(url).Result;
+            IEnumerable<DoctorDto> doctors = response.Content.ReadAsAsync<IEnumerable<DoctorDto>>().Result;
+            return View(doctors);
+
+            url = "listappointments/";
+            response = client.GetAsync(url).Result;
+            IEnumerable<RoomDto> rooms = response.Content.ReadAsAsync<IEnumerable<RoomDto>>().Result;
+            return View(rooms);
         }
 
         // POST: Appointment/Create
@@ -80,14 +93,40 @@ namespace HospitalProjectMackenzie.Controllers
             UpdateAppointment ViewModel = new UpdateAppointment();
 
 
-            string url = "appointmentdata/findappointment/" + id;
+            string url = "findappointment/" + id;
             HttpResponseMessage response = client.GetAsync(url).Result;
             AppointmentDto SelectedAppointment = response.Content.ReadAsAsync<AppointmentDto>().Result;
             ViewModel.SelectedAppointment = SelectedAppointment;
 
 
+            url = "listappointments/";
+            response = client.GetAsync(url).Result;
+            IEnumerable<PatientDto> patients = response.Content.ReadAsAsync<IEnumerable<PatientDto>>().Result;
+            ViewModel.PatientOptions = patients;
+
+            url = "listappointments/";
+            response = client.GetAsync(url).Result;
+            IEnumerable<DoctorDto> doctors = response.Content.ReadAsAsync<IEnumerable<DoctorDto>>().Result;
+            ViewModel.DoctorOptions = doctors;
+
+
+            url = "listappointments/";
+            response = client.GetAsync(url).Result;
+            IEnumerable<RoomDto> rooms = response.Content.ReadAsAsync<IEnumerable<RoomDto>>().Result;
+            ViewModel.RoomOptions = rooms;
 
             return View(ViewModel);
+
+
+          
+
+          
+
+           
+
+
+
+
         }
 
         // POST: Appointment/Update/5
