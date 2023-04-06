@@ -9,13 +9,12 @@
         <input type="text" name="PaymentID" value="@Model.SelectedPayment.PaymentID" />
     </div>
     <div>
-        <label>Amount:</label> <input type="text" name="PaymentAmount" value="@Model.SelectedPayment.PaymentAmount" />
+        <label for="PaymentAmount">Amount:</label> <input type="text" name="PaymentAmount" value="@Model.SelectedPayment.PaymentAmount" />
     </div>
     <div>
-        <label>Payment ID:</label>
-
+        <label for="BillID">Bill ID:</label>
         <select name="BillID">
-            @foreach (var bill in Model.BillID)
+            @foreach (var bill in Model.Bills)
             {
                 string selected = "";
                 if (bill.BillID == Model.SelectedPayment.BillID)
