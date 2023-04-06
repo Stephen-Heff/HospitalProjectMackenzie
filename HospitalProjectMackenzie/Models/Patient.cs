@@ -35,6 +35,12 @@ namespace HospitalProjectMackenzie.Models
 
         public string PatientCellPhone { get; set; }
 
+        public int RoomID { get; set; }
+        public string RoomName { get; set; }
+        public int DoctorID { get; set; }
+        public string DoctorFirstName { get; set; }
+        public string DoctorLastName { get; set; }
+
     }
 
 }

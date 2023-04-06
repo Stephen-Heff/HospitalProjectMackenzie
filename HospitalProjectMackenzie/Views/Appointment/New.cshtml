@@ -10,17 +10,26 @@
         <label>Name:</label> <input type="text" name="AppointmentName" />
     </div>
 
-   <div>
+    <div>
         <label for="PatientID">Patient:</label>
         <select name="PatientID">
             @foreach (var patient in Model)
             {
-            <option value="@patient.PatientFirstName @patient.PatientLastName">@patient.PatientFirstName @patient.PatientLastName</option>
-       
+                <option value="@patient.PatientID">@patient.PatientFirstName @patient.PatientLastName</option>
+
             }
         </select>
     </div>
+    <div>
+        <label for="RoomID">Room:</label>
+        <select name="RoomID">
+            @foreach (var room in Model)
+            {
+                <option value="@room.RoomID">@room.RoomName</option>
 
+            }
+        </select>
+    </div>
 
 
 

@@ -14,11 +14,29 @@
 </ul>
 
 
-<form action="/Patient/Update/@Model.SelectedAppointment.AppointmentID" method="POST">
+<form action="/Appointment/Update/@Model.SelectedAppointment.AppointmentID" method="POST">
     <div style="display:none;">
         @* Pass through the Appointment ID *@
         <input type="text" name="AppointmentID" value="@Model.SelectedAppointment.AppointmentID" />
     </div>
+
+    <div>
+        <label for="PatientID">Patient:</label>
+        <select name="PatientID">
+            @foreach (var site in Model.PatientOptions)
+            {
+                string selected = "";
+                if (patient.PatientID == Model.SelectedPatient.PatientID)
+                {
+                    selected = "selected";
+                }
+            <option value="@patient.PatientID" @selected>@patient.PatientFirstName</option>
+            }
+        </select>
+    </div>
+
+
+
     <div>
         <label>Name:</label> <input type="text" name="AppointmentName" value="@Model.SelectedAppointment.AppointmentName" />
     </div>
