@@ -21,21 +21,48 @@
     </div>
 
     <div>
-        <label for="PatientID">Patient:</label>
-        <select name="PatientID">
-            @foreach (var site in Model.PatientOptions)
+        <label for="DoctorID">Doctor:</label>
+        <select name="DoctorID">
+            @foreach (var doctor in Model.DoctorOptions)
             {
                 string selected = "";
-                if (patient.PatientID == Model.SelectedPatient.PatientID)
+                if (doctor.DoctorID == Model.SelectedAppointment.DoctorID)
                 {
                     selected = "selected";
                 }
-            <option value="@patient.PatientID" @selected>@patient.PatientFirstName</option>
+            <option value="@doctor.DoctorID" @selected>@doctor.DoctorFirstName @doctor.DoctorLastName</option>
+            }
+        </select>
+    </div>
+    <div>
+        <label for="PatientID">Patient:</label>
+        <select name="PatientID">
+            @foreach (var patient in Model.PatientOptions)
+            {
+                string selected = "";
+                if (patient.PatientID == Model.SelectedAppointment.PatientID)
+                {
+                    selected = "selected";
+                }
+            <option value="@patient.PatientID" @selected>@patient.PatientFirstName @patient.PatientLastName</option>
             }
         </select>
     </div>
 
-
+    <div>
+        <label for="RoomID">Room Name:</label>
+        <select name="RoomID">
+            @foreach (var room in Model.RoomOptions)
+            {
+                string selected = "";
+                if (room.RoomID == Model.SelectedAppointment.RoomID)
+                {
+                    selected = "selected";
+                }
+            <option value="@room.RoomID" @selected>@room.RoomName</option>
+            }
+        </select>
+    </div>
 
     <div>
         <label>Name:</label> <input type="text" name="AppointmentName" value="@Model.SelectedAppointment.AppointmentName" />
