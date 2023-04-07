@@ -11,6 +11,17 @@
     </div>
 
     <div>
+        <label for="DoctorID">Doctor:</label>
+        <select name="DoctorID">
+            @foreach (var doctor in Model)
+            {
+                <option value="@doctor.DoctorID">@doctor.DoctorFirstName @doctor.DoctorLastName</option>
+
+            }
+        </select>
+    </div>
+
+    <div>
         <label for="PatientID">Patient:</label>
         <select name="PatientID">
             @foreach (var patient in Model)
