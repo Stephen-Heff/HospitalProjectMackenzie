@@ -18,6 +18,7 @@ namespace HospitalProjectMackenzie.Models
         public string PatientDateOfBirth { get; set; }
         public string PatientCellPhone { get; set; }
 
+
         // Navigation property for Appointments
         public virtual ICollection<Appointment> Appointments { get; set; }
     }
