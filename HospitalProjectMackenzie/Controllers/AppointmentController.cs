@@ -150,7 +150,7 @@ namespace HospitalProjectMackenzie.Controllers
         }
 
         // GET: Appointment/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult DeleteConfirm(int id)
         {
             string url = "appointmentdata/findappointment/" + id;
             HttpResponseMessage response = client.GetAsync(url).Result;
@@ -160,7 +160,7 @@ namespace HospitalProjectMackenzie.Controllers
 
         // POST: Appointment/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(int id)
         {
             string url = "appointmentdata/deleteappointment/" + id;
             HttpContent content = new StringContent("");
