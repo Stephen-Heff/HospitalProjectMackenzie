@@ -9,5 +9,7 @@ namespace HospitalProjectMackenzie.Models.ViewModels
     {
         public PatientDto SelectedPatient { get; set; }
         public IEnumerable<AppointmentDto> AppointmentsForPatient { get; set; }
+
+     
     }
 }

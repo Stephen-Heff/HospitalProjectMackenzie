@@ -1,4 +1,4 @@
-﻿@model HospitalProjectMackenzie.Models.AppointmentDto
+﻿@model HospitalProjectMackenzie.Models.ViewModels.DetailsAppointment
 
 @{
     ViewBag.Title = "Details";
@@ -10,10 +10,15 @@
 
 <ul>
     <li><a href="/Appointment/List">Go back to list</a></li>
-    <li><a href="/Appointment/Edit/@Model.AppointmentID">Edit</a></li>
-    <li><a href="/Appointment/DeleteConfirm/@Model.AppointmentID">Delete</a></li>
+    <li><a href="/Appointment/Edit/@Model.SelectedAppointment.AppointmentID">Edit</a></li>
+    <li><a href="/Appointment/DeleteConfirm/@Model.SelectedAppointment.AppointmentID">Delete</a></li>
 </ul>
 
-
-<div>Name: @Model.AppointmentName</div>
-<div>Room Name:  <a href="/Room/Details/@Model.RoomID"> @Model.RoomName </a></div>
+<div>Appointment Name: @Model.SelectedAppointment.AppointmentName</div>
+<div>
+    <div>Bill for @Model.SelectedAppointment.AppointmentName</div>
+    @foreach (var bill in Model.BillsForPatient)
+    {
+        <a href="/Bill/Details/@bill.BillID">@bill.BillAmount</a><br />
+    }
+</div>

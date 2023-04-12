@@ -11,5 +11,7 @@ namespace HospitalProjectMackenzie.Models.ViewModels
         public IEnumerable<PatientDto> Patients { get; set; }
         public IEnumerable<DoctorDto> Doctors { get; set; }
         public IEnumerable<RoomDto> Rooms { get; set; }
+
+        public IEnumerable<BillDto> BillsForPatient { get; set; }
     }
 }

@@ -24,6 +24,7 @@ namespace HospitalProjectMackenzie.Models
         public int BillID { get; set; }
         public int BillAmount { get; set; }
         public int AppointmentID { get; set; }
+        public string AppointmentName { get; set; }
         public int PaymentID { get; set; }
 
     }
