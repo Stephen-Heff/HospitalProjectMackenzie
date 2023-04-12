@@ -19,13 +19,13 @@ namespace HospitalProjectMackenzie.Controllers
         static PatientController()
         {
             client = new HttpClient();
-            client.BaseAddress = new Uri("https://localhost:44388/api/patientdata/");
+            client.BaseAddress = new Uri("https://localhost:44388/api/");
         }
         // GET: Patient/List
         public ActionResult List()
         {
 
-            string url = "listpatients";
+            string url = "patientdata/listpatients";
             HttpResponseMessage response = client.GetAsync(url).Result;
 
             IEnumerable<PatientDto> patients = response.Content.ReadAsAsync<IEnumerable<PatientDto>>().Result;
@@ -35,11 +35,24 @@ namespace HospitalProjectMackenzie.Controllers
         // GET: Patient/Details/5
         public ActionResult Details(int id)
         {
-            string url = "findpatient/" + id;
+
+            DetailsPatient ViewModel = new DetailsPatient();
+
+            string url = "patientdata/findpatient/" + id;
             HttpResponseMessage response = client.GetAsync(url).Result;
 
             PatientDto selectedpatients = response.Content.ReadAsAsync<PatientDto>().Result;
-            return View(selectedpatients);
+
+            ViewModel.SelectedPatient = selectedpatients;
+            //show associated appointments with this patient
+            url = "appointmentdata/listappointmentsforpatient/" + id;
+            response = client.GetAsync(url).Result;
+            IEnumerable<AppointmentDto> AppointmentsForPatient = response.Content.ReadAsAsync<IEnumerable<AppointmentDto>>().Result;
+
+            ViewModel.AppointmentsForPatient = AppointmentsForPatient;
+
+
+            return View(ViewModel);
 
 
         }
@@ -54,7 +67,7 @@ namespace HospitalProjectMackenzie.Controllers
         [HttpPost]
         public ActionResult Create(Patient patient)
         {
-            string url = "addpatient";
+            string url = "patientdata/addpatient";
 
 
             string jsonpayload = jss.Serialize(patient);
@@ -80,7 +93,7 @@ namespace HospitalProjectMackenzie.Controllers
             PatientDto ViewModel = new PatientDto();
 
 
-            string url = "findpatient/" + id;
+            string url = "patientdata/findpatient/" + id;
             HttpResponseMessage response = client.GetAsync(url).Result;
             PatientDto SelectedPatient = response.Content.ReadAsAsync<PatientDto>().Result;
             ViewModel = SelectedPatient;
@@ -94,7 +107,7 @@ namespace HospitalProjectMackenzie.Controllers
         [HttpPost]
         public ActionResult Update(int id, Patient patient)
         {
-            string url = "updatepatient/" + id;
+            string url = "patientdata/updatepatient/" + id;
             string jsonpayload = jss.Serialize(patient);
             HttpContent content = new StringContent(jsonpayload);
             content.Headers.ContentType.MediaType = "application/json";
@@ -113,7 +126,7 @@ namespace HospitalProjectMackenzie.Controllers
         // GET: Patient/Delete/5
         public ActionResult DeleteConfirm(int id)
         {
-            string url = "findpatient/" + id;
+            string url = "patientdata/findpatient/" + id;
             HttpResponseMessage response = client.GetAsync(url).Result;
             PatientDto selectedpatient = response.Content.ReadAsAsync<PatientDto>().Result;
             return View(selectedpatient);
@@ -123,7 +136,7 @@ namespace HospitalProjectMackenzie.Controllers
         [HttpPost]
         public ActionResult Delete(int id)
         {
-            string url = "deletepatient/" + id;
+            string url = "patientdata/deletepatient/" + id;
             HttpContent content = new StringContent("");
             content.Headers.ContentType.MediaType = "application/json";
             HttpResponseMessage response = client.PostAsync(url, content).Result;

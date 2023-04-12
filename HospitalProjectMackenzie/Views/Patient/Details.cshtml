@@ -1,4 +1,4 @@
-﻿@model HospitalProjectMackenzie.Models.PatientDto
+﻿@model HospitalProjectMackenzie.Models.ViewModels.DetailsPatient
 @{
     ViewBag.Title = "Details";
 }
@@ -8,14 +8,21 @@
 
 <ul>
     <li><a href="/Patient/List">Go back to list</a></li>
-    <li><a href="/Patient/Edit/@Model.PatientID">Edit</a></li>
-    <li><a href="/Patient/DeleteConfirm/@Model.PatientID">Delete</a></li>
+    <li><a href="/Patient/Edit/@Model.SelectedPatient.PatientID">Edit</a></li>
+    <li><a href="/Patient/DeleteConfirm/@Model.SelectedPatient.PatientID">Delete</a></li>
 </ul>
 
 <h2>Details</h2>
 <a href="/Patient/List">Go back to list</a>
-<div>First Name: @Model.PatientFirstName</div>
-<div>Last Name: @Model.PatientLastName</div>
-<div>Address: @Model.PatientAddress</div>
-<div>DOB: @Model.PatientDateOfBirth</div>
-<div>Cell Phone: @Model.PatientCellPhone</div>
+<div>First Name: @Model.SelectedPatient.PatientFirstName</div>
+<div>Last Name: @Model.SelectedPatient.PatientLastName</div>
+<div>Address: @Model.SelectedPatient.PatientAddress</div>
+<div>DOB: @Model.SelectedPatient.PatientDateOfBirth</div>
+<div>Cell Phone: @Model.SelectedPatient.PatientCellPhone</div>
+<div>
+    <h3>Appointments for @Model.SelectedPatient.PatientFirstName @Model.SelectedPatient.PatientLastName</h3>
+    @foreach (var appointment in Model.AppointmentsForPatient)
+    {
+        <a href="/Appointment/Details/@appointment.AppointmentID">@appointment.AppointmentName</a><br />
+    }
+</div>
