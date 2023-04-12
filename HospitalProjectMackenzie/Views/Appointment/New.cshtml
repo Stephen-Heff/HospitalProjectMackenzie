@@ -1,4 +1,4 @@
-﻿@model IEnumerable<HospitalProjectMackenzie.Models.PatientDto>
+﻿@model HospitalProjectMackenzie.Models.ViewModels.DetailsAppointment
 
 @{
     ViewBag.Title = "Create";
@@ -14,7 +14,7 @@
     <div>
         <label for="DoctorID">Doctor:</label>
         <select name="DoctorID">
-            @foreach (var doctor in Model)
+            @foreach (var doctor in Model.Doctors)
             {
                 <option value="@doctor.DoctorID">@doctor.DoctorFirstName @doctor.DoctorLastName</option>
 
@@ -25,7 +25,7 @@
     <div>
         <label for="PatientID">Patient:</label>
         <select name="PatientID">
-            @foreach (var patient in Model)
+            @foreach (var patient in Model.Patients)
             {
                 <option value="@patient.PatientID">@patient.PatientFirstName @patient.PatientLastName</option>
 
@@ -35,7 +35,7 @@
     <div>
         <label for="RoomID">Room:</label>
         <select name="RoomID">
-            @foreach (var room in Model)
+            @foreach (var room in Model.Rooms)
             {
                 <option value="@room.RoomID">@room.RoomName</option>
 

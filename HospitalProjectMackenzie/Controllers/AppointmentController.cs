@@ -47,20 +47,24 @@ namespace HospitalProjectMackenzie.Controllers
         // GET: Appointment/New
         public ActionResult New()
         {
+            DetailsAppointment ViewModel = new DetailsAppointment();
+
             string url = "patientdata/listpatients/";
             HttpResponseMessage response = client.GetAsync(url).Result;
             IEnumerable<PatientDto> patients = response.Content.ReadAsAsync<IEnumerable<PatientDto>>().Result;
-            return View(patients);
+            ViewModel.Patients = patients;
 
             url = "DoctorData/listDoctors/";
             response = client.GetAsync(url).Result;
             IEnumerable<DoctorDto> doctors = response.Content.ReadAsAsync<IEnumerable<DoctorDto>>().Result;
-            return View(doctors);
+            ViewModel.Doctors = doctors;
 
             url = "roomdata/listrooms/";
             response = client.GetAsync(url).Result;
             IEnumerable<RoomDto> rooms = response.Content.ReadAsAsync<IEnumerable<RoomDto>>().Result;
-            return View(rooms);
+            ViewModel.Rooms = rooms;
+
+            return View(ViewModel);
         }
 
         // POST: Appointment/Create
