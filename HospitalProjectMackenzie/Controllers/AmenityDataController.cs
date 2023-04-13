@@ -29,10 +29,6 @@ namespace HospitalProjectMackenzie.Controllers
             SiteDataController siteDataController = new SiteDataController();
             Amenities.ForEach(a => {
 
-                IHttpActionResult actionResult = siteDataController.FindSite(a.SiteId);
-                var contentResult = actionResult as OkNegotiatedContentResult<SiteDto>;
-                SiteDto siteDto = contentResult.Content;
-
                 AmenityDtos.Add(new AmenityDto()
                 {
                     AmenityID = a.AmenityID,
@@ -41,7 +37,7 @@ namespace HospitalProjectMackenzie.Controllers
                     AmenityLocation = a.AmenityLocation,
                     AmenityType = a.AmenityType,
                     SiteID = a.SiteId,
-                    SiteDto = siteDto
+                    SiteName = a.Site.SiteName
                 });
             }); 
             return (AmenityDtos);
@@ -53,12 +49,6 @@ namespace HospitalProjectMackenzie.Controllers
         public IHttpActionResult FindAmenity(int id)
         {
             Amenity Amenity = db.Amenities.Find(id);
-            SiteDataController siteDataController = new SiteDataController();
-
-            IHttpActionResult actionResult = siteDataController.FindSite(Amenity.SiteId);
-            var contentResult = actionResult as OkNegotiatedContentResult<SiteDto>;
-            SiteDto siteDto = contentResult.Content;
-
             AmenityDto AmenityDto = new AmenityDto()
             {
                 AmenityID = Amenity.AmenityID,
@@ -67,7 +57,7 @@ namespace HospitalProjectMackenzie.Controllers
                 AmenityLocation = Amenity.AmenityLocation,
                 AmenityType = Amenity.AmenityType,
                 SiteID = Amenity.SiteId,
-                SiteDto = siteDto
+                SiteName = Amenity.Site.SiteName
             };
 
             if (Amenity == null)

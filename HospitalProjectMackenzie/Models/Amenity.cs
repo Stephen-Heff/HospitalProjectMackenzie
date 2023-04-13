@@ -11,7 +11,7 @@ namespace HospitalProjectMackenzie.Models
     {
         [Key]
         public int AmenityID { get; set; }
-        public Site Site { get; set; }
+        public virtual Site Site { get; set; }
         [ForeignKey("Site")]
         public int SiteId { get; set; }
         public string AmenityName { get; set; }
@@ -24,7 +24,7 @@ namespace HospitalProjectMackenzie.Models
     {
         public int AmenityID { get; set; }
         public int SiteID { get; set; }
-        public SiteDto SiteDto { get; set; }
+        public string SiteName { get; set; }
         public string AmenityName { get; set; }
         public string AmenityLocation { get; set; }
         public string AmenityType { get; set; }
