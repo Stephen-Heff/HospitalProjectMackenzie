@@ -32,6 +32,13 @@
 <div>Address: @Model.SiteAddress</div>
 <div>Phone Nuumber: @Model.SiteNumber</div>
 
+<h2>Department List</h2>
+@foreach (var department in Model.departments)
+{
+    <a href="/Department/Details/@department.DepartmentID">@department.DepartmentName</a>
+    <br />
+}
+
 <h2>Amenity List</h2>
 @foreach (var amenity in Model.amenities)
 {

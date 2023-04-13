@@ -155,7 +155,8 @@ namespace HospitalProjectMackenzie.Controllers
         /// Gathers information about all Amenities related to a particular site
         /// </summary>
         /// <returns>
-        /// List of AmenityDto
+        /// HEADER: 200 (OK)
+        /// Content: List of AmenityDto
         /// </returns>
         /// <param name="id">Site ID.</param>
         /// <example>
@@ -163,7 +164,8 @@ namespace HospitalProjectMackenzie.Controllers
         /// </example>
         /// 
         [HttpGet]
-        public IEnumerable<AmenityDto> ListAmenitiesForSite(int id)
+        [ResponseType(typeof(AmenityDto))]
+        public IHttpActionResult ListAmenitiesForSite(int id)
         {
             List<Amenity> Amenities = db.Amenities.Where(d => d.SiteId == id).ToList();
             List<AmenityDto> AmenityDtos = new List<AmenityDto>();
@@ -179,7 +181,7 @@ namespace HospitalProjectMackenzie.Controllers
                 SiteName = d.Site.SiteName
             }));
 
-            return AmenityDtos;
+            return Ok(AmenityDtos);
         }
     }
 }
