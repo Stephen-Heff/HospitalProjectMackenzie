@@ -27,13 +27,32 @@ namespace HospitalProjectMackenzie.Controllers
             {
                 BillID = b.BillID,
                 BillAmount = b.BillAmount,
-                AppointmentID = b.Appointment.AppointmentID
+                AppointmentID = b.Appointment.AppointmentID,
+                AppointmentName = b.Appointment.AppointmentName
             }));
 
 
             return BillDtos;
         }
 
+
+        [HttpGet]
+        [ResponseType(typeof(BillDto))]
+        public IHttpActionResult ListBillsForAppointment(int id)
+        {
+            List<Bill> Bill = db.Bills.Where(b => b.AppointmentID == id).ToList();
+            List<BillDto> BillDtos = new List<BillDto>();
+
+            Bill.ForEach(b => BillDtos.Add(new BillDto()
+            {
+                BillID = b.BillID,
+                BillAmount = b.BillAmount,
+                AppointmentID = b.Appointment.AppointmentID,
+                AppointmentName = b.Appointment.AppointmentName
+            }));
+
+            return Ok(BillDtos);
+        }
         // GET: api/BillData/FindBill/5
         [ResponseType(typeof(Bill))]
         [HttpGet]
