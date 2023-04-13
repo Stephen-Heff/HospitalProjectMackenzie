@@ -18,7 +18,16 @@ namespace HospitalProjectMackenzie.Controllers
     public class AmenityDataController : ApiController
     {
         private ApplicationDbContext db = new ApplicationDbContext();
-
+        /// <summary>
+        /// Returns all amenities in the system.
+        /// </summary>
+        /// <returns>
+        /// all amenities in the database.
+        /// </returns>
+        /// <example>
+        /// GET: api/AmenityData/ListAmenities
+        /// </example>
+        
         // GET: api/AmenityData/ListAmenities
         [HttpGet]
         public IEnumerable<AmenityDto> ListAmenities()
@@ -41,6 +50,20 @@ namespace HospitalProjectMackenzie.Controllers
             }); 
             return (AmenityDtos);
         }
+
+        /// <summary>
+        /// Returns an amenities with a particular ID in the system.
+        /// </summary>
+        /// <returns>
+        /// HEADER: 200 (OK)
+        /// CONTENT: An amenity in the system matching up to the amenity ID primary key
+        /// or
+        /// HEADER: 404 (NOT FOUND)
+        /// </returns>
+        /// <param name="id">The primary key of the amenity</param>
+        /// <example>
+        /// GET: api/AmenityData/FindAmenity/5
+        /// </example>
 
         // GET: api/AmenityData/FindAmenity/5
         [ResponseType(typeof(Amenity))]
@@ -67,6 +90,23 @@ namespace HospitalProjectMackenzie.Controllers
             return Ok(AmenityDto);
         }
 
+        /// <summary>
+        /// Updates a particular amenity in the system with POST Data input
+        /// </summary>
+        /// <param name="id">Represents the Amenity ID primary key</param>
+        /// <param name="Amenity">JSON FORM DATA of an amenity</param>
+        /// <returns>
+        /// HEADER: 204 (Success, No Content Response)
+        /// or
+        /// HEADER: 400 (Bad Request)
+        /// or
+        /// HEADER: 404 (Not Found)
+        /// </returns>
+        /// <example>
+        /// POST: api/AmenityData/UpdateAmenity/5
+        /// FORM DATA: Amenity JSON Object
+        /// </example>
+        
         // POST: api/AmenityData/UpdateAmenity/5
         [ResponseType(typeof(void))]
         [HttpPost]
@@ -103,6 +143,21 @@ namespace HospitalProjectMackenzie.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
+        /// <summary>
+        /// Adds an amenity to the system
+        /// </summary>
+        /// <param name="amenity">JSON FORM DATA of an amenity</param>
+        /// <returns>
+        /// HEADER: 201 (Created)
+        /// CONTENT: Amenity ID, Amenity Data
+        /// or
+        /// HEADER: 400 (Bad Request)
+        /// </returns>
+        /// <example>
+        /// POST: api/AmenityData/AddAmenity
+        /// FORM DATA: Amenity JSON Object
+        /// </example>
+        
         // POST: api/AmenityData/AddAmenity
         [HttpPost]
         [ResponseType(typeof(Amenity))]
@@ -120,6 +175,20 @@ namespace HospitalProjectMackenzie.Controllers
             return CreatedAtRoute("DefaultApi", new { id = amenity.AmenityID }, amenity);
         }
 
+        /// <summary>
+        /// Deletes an amenity from the system by it's ID.
+        /// </summary>
+        /// <param name="id">The primary key of the amenity</param>
+        /// <returns>
+        /// HEADER: 200 (OK)
+        /// or
+        /// HEADER: 404 (NOT FOUND)
+        /// </returns>
+        /// <example>
+        /// POST: api/AmenityData/DeleteAmenity/5
+        /// FORM DATA: (empty)
+        /// </example>
+        
         // POST: api/AmenityData/DeleteAmenity/5
         [ResponseType(typeof(Amenity))]
         [HttpPost]

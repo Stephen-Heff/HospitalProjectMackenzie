@@ -42,8 +42,6 @@ namespace HospitalProjectMackenzie.Controllers
 
             url = "amenitydata/listamenitiesforsite/" + id;
             response = client.GetAsync(url).Result;
-            Debug.WriteLine(url);
-            Debug.WriteLine(response);
             IEnumerable<AmenityDto> amenities = response.Content.ReadAsAsync<IEnumerable<AmenityDto>>().Result;
             selectedsites.amenities = amenities;
 
