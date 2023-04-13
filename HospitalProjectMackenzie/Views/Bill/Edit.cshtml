@@ -12,9 +12,9 @@
         <label>Amount:</label> <input type="text" name="BillAmount" value="@Model.SelectedBill.BillAmount" />
     </div>
     <div>
-        <label>Appointment ID:</label>
+        <label>Appointment Name:</label>
 
-        <select name="AppointmentID">
+        <select name="Appointment Name">
             @foreach (var appointment in Model.AppointmentID)
             {
                 string selected = "";
@@ -22,7 +22,7 @@
                 {
                     selected = "selected";
                 }
-                <option value="@appointment.AppointmentID" @selected>@appointment.AppointmentID</option>
+                <option value="@appointment.AppointmentID" @selected>@appointment.AppointmentID - @appointment.AppointmentName</option>
 
             }
         </select>

@@ -99,10 +99,12 @@ namespace HospitalProjectMackenzie.Controllers
 
         // POST: Bill/Update/5
         [HttpPost]
+
         public ActionResult Update(int id, Bill bill)
         {
             string url = "billdata/updatebill/" + id;
             string jsonpayload = jss.Serialize(bill);
+            Debug.WriteLine("my bill is" + jsonpayload);
             HttpContent content = new StringContent(jsonpayload);
             content.Headers.ContentType.MediaType = "application/json";
             HttpResponseMessage response = client.PostAsync(url, content).Result;
@@ -143,5 +145,11 @@ namespace HospitalProjectMackenzie.Controllers
                 return RedirectToAction("Error");
             }
         }
+
+        public ActionResult Error()
+        {
+            return View();
+        }
+
     }
 }

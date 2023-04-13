@@ -75,8 +75,16 @@ namespace HospitalProjectMackenzie.Controllers
         }
 
         // POST: api/BillData/UpdateBill/5
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="bill"></param>
+        /// <returns></returns>
+        /// <example>curl -d @data.json -H "Content-Type: application/json" https://localhost:44388/api/billdata/updatebill/5</example>
         [ResponseType(typeof(void))]
         [HttpPost]
+
         public IHttpActionResult UpdateBill(int id, Bill bill)
         {
             if (!ModelState.IsValid)
@@ -110,6 +118,7 @@ namespace HospitalProjectMackenzie.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
+
         // POST: api/BillData/AddBill
         [ResponseType(typeof(Bill))]
         [HttpPost]
@@ -141,8 +150,10 @@ namespace HospitalProjectMackenzie.Controllers
             db.SaveChanges();
 
             return Ok();
+
         }
 
+   
         protected override void Dispose(bool disposing)
         {
             if (disposing)
