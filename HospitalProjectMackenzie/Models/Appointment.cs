@@ -34,6 +34,7 @@ namespace HospitalProjectMackenzie.Models
         public virtual Room Room { get; set; }
 
 
+       
 
 
 
@@ -61,6 +62,11 @@ namespace HospitalProjectMackenzie.Models
 
         public int RoomID { get; set; }
         public string RoomName { get; set; }
+
+        public int BillID { get; set; }
+        public int BillAmount { get; set; }
+
+
     }
 
 }

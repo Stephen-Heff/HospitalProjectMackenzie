@@ -12,9 +12,10 @@
         <label>Amount:</label> <input type="text" name="BillAmount" value="@Model.SelectedBill.BillAmount" />
     </div>
     <div>
-        <label for="AppointmentID">Appointment ID:</label>
+        <label>Appointment ID:</label>
+
         <select name="AppointmentID">
-            @foreach (var appointment in Model.Appointments)
+            @foreach (var appointment in Model.AppointmentID)
             {
                 string selected = "";
                 if (appointment.AppointmentID == Model.SelectedBill.AppointmentID)

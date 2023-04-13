@@ -9,6 +9,6 @@ namespace HospitalProjectMackenzie.Models.ViewModels
     {
         public PaymentDto SelectedPayment { get; set; }
 
-        public IEnumerable<BillDto> BillID { get; set; }
+        public IEnumerable<BillDto> Bills { get; set; }
     }
 }

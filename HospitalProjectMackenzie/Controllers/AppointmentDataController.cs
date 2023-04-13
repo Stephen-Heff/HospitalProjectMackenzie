@@ -145,7 +145,10 @@ namespace HospitalProjectMackenzie.Controllers
                 DoctorFirstName = a.Doctor.DoctorFirstName,
                 DoctorLastName = a.Doctor.DoctorLastName,
                 RoomID = a.RoomID,
-                RoomName = a.Room.RoomName
+                RoomName = a.Room.RoomName,
+               
+
+
             }));
 
             return Ok(AppointmentDtos);
@@ -169,7 +172,7 @@ namespace HospitalProjectMackenzie.Controllers
                 DoctorFirstName = Appointment.Doctor.DoctorFirstName,
                 DoctorLastName = Appointment.Doctor.DoctorLastName,
                 RoomID = Appointment.Room.RoomID,
-                RoomName = Appointment.Room.RoomName
+                RoomName = Appointment.Room.RoomName,
             };
 
             if (Appointment == null)
