@@ -25,5 +25,8 @@ namespace HospitalProjectMackenzie.Models
         public string SiteAddress { get; set; }
         public string SiteNumber { get; set; }
         public string SiteImageUrl { get; set; }
+
+        public IEnumerable<AmenityDto> amenities { get; set; }
+        public IEnumerable<DepartmentDto> departments { get; set; }
     }
 }

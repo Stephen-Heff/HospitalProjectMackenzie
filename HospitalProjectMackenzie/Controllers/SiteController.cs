@@ -20,13 +20,13 @@ namespace HospitalProjectMackenzie.Controllers
         static SiteController()
         {
             client = new HttpClient();
-            client.BaseAddress = new Uri("https://localhost:44388/api/sitedata/");
+            client.BaseAddress = new Uri("https://localhost:44388/api/");
         }
 
         // GET: Site/List
         public ActionResult List()
         {
-            string url = "listsites";
+            string url = "sitedata/listsites";
             HttpResponseMessage response = client.GetAsync(url).Result;
 
             IEnumerable<SiteDto> sites = response.Content.ReadAsAsync<IEnumerable<SiteDto>>().Result;
@@ -36,13 +36,21 @@ namespace HospitalProjectMackenzie.Controllers
         // GET: Site/Details/5
         public ActionResult Details(int id)
         {
-            string url = "findsite/" + id;
+            string url = "sitedata/findsite/" + id;
             HttpResponseMessage response = client.GetAsync(url).Result;
-
             SiteDto selectedsites = response.Content.ReadAsAsync<SiteDto>().Result;
+
+            url = "amenitydata/listamenitiesforsite/" + id;
+            response = client.GetAsync(url).Result;
+            IEnumerable<AmenityDto> amenities = response.Content.ReadAsAsync<IEnumerable<AmenityDto>>().Result;
+            selectedsites.amenities = amenities;
+
+            url = "departmentdata/ListDepartmentsForSite/" + id;
+            response = client.GetAsync(url).Result;
+            IEnumerable<DepartmentDto> departments = response.Content.ReadAsAsync<IEnumerable<DepartmentDto>>().Result;
+            selectedsites.departments = departments;
+
             return View(selectedsites);
-
-
         }
 
         // GET: Site/New
@@ -56,7 +64,7 @@ namespace HospitalProjectMackenzie.Controllers
         public ActionResult Create(Site site)
         {
             Debug.WriteLine("Create");
-            string url = "addsite";
+            string url = "sitedata/addsite";
 
 
             string jsonpayload = jss.Serialize(site);
@@ -81,7 +89,7 @@ namespace HospitalProjectMackenzie.Controllers
         {
             SiteDto ViewModel = new SiteDto();
 
-            string url = "findsite/" + id;
+            string url = "sitedata/findsite/" + id;
             HttpResponseMessage response = client.GetAsync(url).Result;
             SiteDto SelectedSite = response.Content.ReadAsAsync<SiteDto>().Result;
             ViewModel = SelectedSite;
@@ -93,7 +101,7 @@ namespace HospitalProjectMackenzie.Controllers
         [HttpPost]
         public ActionResult Update(int id, Site site)
         {
-            string url = "updatesite/" + id;
+            string url = "sitedata/updatesite/" + id;
             string jsonpayload = jss.Serialize(site);
             HttpContent content = new StringContent(jsonpayload);
             content.Headers.ContentType.MediaType = "application/json";
@@ -112,7 +120,7 @@ namespace HospitalProjectMackenzie.Controllers
         // GET: Site/Delete/5
         public ActionResult DeleteConfirm(int id)
         {
-            string url = "findsite/" + id;
+            string url = "sitedata/findsite/" + id;
             HttpResponseMessage response = client.GetAsync(url).Result;
             SiteDto selectedSite = response.Content.ReadAsAsync<SiteDto>().Result;
             return View(selectedSite);
@@ -123,7 +131,7 @@ namespace HospitalProjectMackenzie.Controllers
         [HttpPost]
         public ActionResult Delete(int id)
         {
-            string url = "deletesite/" + id;
+            string url = "sitedata/deletesite/" + id;
             HttpContent content = new StringContent("");
             content.Headers.ContentType.MediaType = "application/json";
             HttpResponseMessage response = client.PostAsync(url, content).Result;

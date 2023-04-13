@@ -17,6 +17,16 @@ namespace HospitalProjectMackenzie.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
+        /// <summary>
+        /// Returns all Sites in the system.
+        /// </summary>
+        /// <returns>
+        /// all Sites in the database, including their associated species.
+        /// </returns>
+        /// <example>
+        /// GET: api/SiteData/ListSites
+        /// </example>
+
         // GET: api/SiteData/ListSites
         [HttpGet]
         public IEnumerable<SiteDto> ListSites()
@@ -37,6 +47,20 @@ namespace HospitalProjectMackenzie.Controllers
             return (SiteDtos);
         }
 
+        /// <summary>
+        /// Returns a stie by it's id.
+        /// </summary>
+        /// <returns>
+        /// HEADER: 200 (OK)
+        /// CONTENT: An site in the system matching up to the site ID primary key
+        /// or
+        /// HEADER: 404 (NOT FOUND)
+        /// </returns>
+        /// <param name="id">The primary key of the site</param>
+        /// <example>
+        /// GET: api/SiteData/FindSite/5
+        /// </example>
+        
         // GET: api/SiteData/FindSite/5
         [ResponseType(typeof(Site))]
         [HttpGet]
@@ -61,6 +85,23 @@ namespace HospitalProjectMackenzie.Controllers
             return Ok(SiteDto);
         }
 
+        /// <summary>
+        /// Updates a particular site in the system with POST Data input
+        /// </summary>
+        /// <param name="id">Represents the Site ID primary key</param>
+        /// <param name="Site">JSON FORM DATA of an site</param>
+        /// <returns>
+        /// HEADER: 204 (Success, No Content Response)
+        /// or
+        /// HEADER: 400 (Bad Request)
+        /// or
+        /// HEADER: 404 (Not Found)
+        /// </returns>
+        /// <example>
+        /// POST: api/SiteData/UpdateSite/5
+        /// FORM DATA: Site JSON Object
+        /// </example>
+        
         // POST: api/SiteData/UpdateSite/5
         [ResponseType(typeof(void))]
         [HttpPost]
@@ -97,6 +138,21 @@ namespace HospitalProjectMackenzie.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
+        /// <summary>
+        /// Adds an site to the system
+        /// </summary>
+        /// <param name="site">JSON FORM DATA of an site</param>
+        /// <returns>
+        /// HEADER: 201 (Created)
+        /// CONTENT: Site ID, Site Data
+        /// or
+        /// HEADER: 400 (Bad Request)
+        /// </returns>
+        /// <example>
+        /// POST: api/SiteData/AddSite
+        /// FORM DATA: Site JSON Object
+        /// </example>
+        
         // POST: api/SiteData/AddSite
         [HttpPost]
         [ResponseType(typeof(Site))]
@@ -114,6 +170,20 @@ namespace HospitalProjectMackenzie.Controllers
             return CreatedAtRoute("DefaultApi", new { id = site.SiteID }, site);
         }
 
+        /// <summary>
+        /// Deletes an site from the system by it's ID.
+        /// </summary>
+        /// <param name="id">The primary key of the site</param>
+        /// <returns>
+        /// HEADER: 200 (OK)
+        /// or
+        /// HEADER: 404 (NOT FOUND)
+        /// </returns>
+        /// <example>
+        /// POST: api/SiteData/DeleteSite/5
+        /// FORM DATA: (empty)
+        /// </example>
+        
         // POST: api/SiteData/DeleteSite/5
         [ResponseType(typeof(Site))]
         [HttpPost]
