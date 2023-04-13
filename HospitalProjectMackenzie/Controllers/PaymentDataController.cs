@@ -34,6 +34,7 @@ namespace HospitalProjectMackenzie.Controllers
         }
 
         // GET: api/PaymentData/FindPayment/5
+        [HttpGet]
         [ResponseType(typeof(Payment))]
         public IHttpActionResult FindPayment(int id)
         {
@@ -54,6 +55,7 @@ namespace HospitalProjectMackenzie.Controllers
 
         // POST: api/PaymentData/UpdatePayment/5
         [ResponseType(typeof(void))]
+        [HttpPost]
         public IHttpActionResult UpdatePayment(int id, Payment payment)
         {
             if (!ModelState.IsValid)

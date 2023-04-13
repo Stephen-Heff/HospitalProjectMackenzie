@@ -4,7 +4,7 @@
 }
 
 <h2>Update Paymnet</h2>
-<form action="/Payment/Update/@Model.SelectedPayment.PaymentID." method="POST">
+<form action="/Payment/Update/@Model.SelectedPayment.PaymentID" method="POST">
     <div style="display:none;">
         <input type="text" name="PaymentID" value="@Model.SelectedPayment.PaymentID" />
     </div>
@@ -21,7 +21,7 @@
                 {
                     selected = "selected";
                 }
-                <option value="@bill.BillID" @selected>@bill.BillAmount</option>
+                <option value="@bill.BillID" @selected>@bill.BillAmount-@bill.AppointmentName</option>
 
             }
         </select>

@@ -32,6 +32,7 @@ namespace HospitalProjectMackenzie.Controllers
         }
 
         // GET: Payment/Details/5
+      
         public ActionResult Details(int id)
         {
             DetailsPayment ViewModel = new DetailsPayment();
@@ -87,12 +88,17 @@ namespace HospitalProjectMackenzie.Controllers
             PaymentDto SelectedPayment = response.Content.ReadAsAsync<PaymentDto>().Result;
             ViewModel.SelectedPayment = SelectedPayment;
 
+            url = "billdata/listbills/";
+            response = client.GetAsync(url).Result;
+            IEnumerable<BillDto> Bills = response.Content.ReadAsAsync<IEnumerable<BillDto>>().Result;
+            ViewModel.Bills = Bills;
+
             return View(ViewModel);
         }
 
         // POST: Payment/Update/5
         [HttpPost]
-        public ActionResult Edit(int id, Payment payment)
+        public ActionResult Update(int id, Payment payment)
         {
             string url = "paymentdata/updatepayment/" + id;
             string jsonpayload = jss.Serialize(payment);

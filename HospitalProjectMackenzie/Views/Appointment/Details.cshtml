@@ -19,6 +19,6 @@
     <div>Bill for @Model.SelectedAppointment.AppointmentName</div>
     @foreach (var bill in Model.BillsForPatient)
     {
-        <a href="/Bill/Details/@bill.BillID">@bill.BillAmount</a><br />
+        <a href="/Bill/Details/@bill.BillID">$ @bill.BillAmount</a><br />
     }
 </div>
