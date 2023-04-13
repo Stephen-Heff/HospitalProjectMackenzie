@@ -32,3 +32,10 @@
 <div>Address: @Model.SiteAddress</div>
 <div>Phone Nuumber: @Model.SiteNumber</div>
 
+<h2>Amenity List</h2>
+@foreach (var amenity in Model.amenities)
+{
+    <a href="/Amenity/Details/@amenity.AmenityID">@amenity.AmenityName</a>
+    <br />
+}
+

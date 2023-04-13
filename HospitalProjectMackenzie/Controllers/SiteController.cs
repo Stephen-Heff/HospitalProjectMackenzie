@@ -40,9 +40,13 @@ namespace HospitalProjectMackenzie.Controllers
             HttpResponseMessage response = client.GetAsync(url).Result;
 
             SiteDto selectedsites = response.Content.ReadAsAsync<SiteDto>().Result;
+
+            AmenityDataController controller = new AmenityDataController();
+            IEnumerable<AmenityDto> amenities = controller.ListAmenitiesForSite(id);
+
+            selectedsites.amenities = amenities;
+
             return View(selectedsites);
-
-
         }
 
         // GET: Site/New

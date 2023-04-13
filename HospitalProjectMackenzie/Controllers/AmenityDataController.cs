@@ -26,7 +26,6 @@ namespace HospitalProjectMackenzie.Controllers
             List<Amenity> Amenities = db.Amenities.ToList();
             List<AmenityDto> AmenityDtos = new List<AmenityDto>();
 
-            SiteDataController siteDataController = new SiteDataController();
             Amenities.ForEach(a => {
 
                 AmenityDtos.Add(new AmenityDto()
@@ -150,6 +149,37 @@ namespace HospitalProjectMackenzie.Controllers
         private bool AmenityExists(int id)
         {
             return db.Amenities.Count(e => e.AmenityID == id) > 0;
+        }
+
+        /// <summary>
+        /// Gathers information about all Amenities related to a particular site
+        /// </summary>
+        /// <returns>
+        /// List of AmenityDto
+        /// </returns>
+        /// <param name="id">Site ID.</param>
+        /// <example>
+        /// GET: api/AmenityData/ListAmenitiesForSite/1
+        /// </example>
+        /// 
+        [HttpGet]
+        public IEnumerable<AmenityDto> ListAmenitiesForSite(int id)
+        {
+            List<Amenity> Amenities = db.Amenities.Where(d => d.SiteId == id).ToList();
+            List<AmenityDto> AmenityDtos = new List<AmenityDto>();
+
+            Amenities.ForEach(d => AmenityDtos.Add(new AmenityDto()
+            {
+                AmenityID = d.AmenityID,
+                AmenityName = d.AmenityName,
+                AmenityDescription = d.AmenityDescription,
+                AmenityLocation = d.AmenityLocation,
+                AmenityType = d.AmenityType,
+                SiteID = d.SiteId,
+                SiteName = d.Site.SiteName
+            }));
+
+            return AmenityDtos;
         }
     }
 }
