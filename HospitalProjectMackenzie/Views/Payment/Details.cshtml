@@ -1,4 +1,4 @@
-﻿@model HospitalProjectMackenzie.Models.BillDto
+﻿@model HospitalProjectMackenzie.Models.ViewModels.DetailsPayment
 @{
     ViewBag.Title = "Details";
 }
@@ -6,13 +6,13 @@
 <br />
 
 <ul>
-    <li><a href="/Bill/List">Go back to list</a></li>
-    <li><a href="/Bill/Edit/@Model.BillID">Edit</a></li>
-    <li><a href="/Bill/DeleteConfirm/@Model.BillID">Delete</a></li>
+    <li><a href="/Payment/List">Go back to list</a></li>
+    <li><a href="/Payment/Edit/@Model.SelectedPayment.PaymentID">Edit</a></li>
+    <li><a href="/BPaymentill/DeleteConfirm/@Model.SelectedPayment.PaymentID">Delete</a></li>
 </ul>
 
 <h2>Details</h2>
 <a href="/Bill/List">go back to list</a>
 
-<div>Amount: $ @Model.BillAmount</div>
+<div>Amount: $ @Model.SelectedPayment.PaymentAmount</div>
 

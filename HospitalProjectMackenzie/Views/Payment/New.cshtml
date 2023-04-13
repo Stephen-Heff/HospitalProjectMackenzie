@@ -6,9 +6,7 @@
 
 <h2>Create a New Payment</h2>
 <form action="/Payment/Create" method="POST">
-    <div>
-        <label>Amount:</label> <input type="text" name="PaymentAmount" />
-    </div>
+
     <div>
         <label>Bill:</label>
         <select name="BillID">
@@ -16,8 +14,23 @@
             {
                 <option value="@bill.BillID">@bill.BillID</option>
 
+
             }
         </select>
+    </div>
+    <div>
+        <label>Bill:</label>
+        <select name="BillID">
+            @foreach (var bill in Model)
+            {
+                <option value="@bill.BillID">@bill.BillAmount</option>
+
+
+            }
+        </select>
+    </div>
+    <div>
+        <label>Amount paid:</label> <input type="text" name="PaymentAmount" />
     </div>
     <div>
         <input type="submit" value="Add Payment" />

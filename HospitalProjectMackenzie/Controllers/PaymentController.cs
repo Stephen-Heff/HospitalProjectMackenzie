@@ -49,7 +49,7 @@ namespace HospitalProjectMackenzie.Controllers
         // GET: Payment/New
         public ActionResult New()
         {
-            string url = "BillData/ListBill/";
+            string url = "BillData/ListBills/";
             HttpResponseMessage response = client.GetAsync(url).Result;
             IEnumerable<BillDto> bills = response.Content.ReadAsAsync<IEnumerable<BillDto>>().Result;
 
