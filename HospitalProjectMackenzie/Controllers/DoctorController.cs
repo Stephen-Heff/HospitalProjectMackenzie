@@ -36,11 +36,19 @@ namespace HospitalProjectMackenzie.Controllers
         // GET: Doctor/Details/5
         public ActionResult Details(int id)
         {
+            DetailsDoctor ViewModel = new DetailsDoctor();
             string url = "DoctorData/findDoctor/" + id;
             HttpResponseMessage response = client.GetAsync(url).Result;
 
             DoctorDto selectedDoctor = response.Content.ReadAsAsync<DoctorDto>().Result;
-            return View(selectedDoctor);
+            ViewModel.SelectedDoctor = selectedDoctor;
+
+            url = "AppointmentData/ListAppointmentsForDoctor/" + id;
+            response = client.GetAsync(url).Result;
+            IEnumerable<AppointmentDto> associatedAppointments = response.Content.ReadAsAsync<IEnumerable<AppointmentDto>>().Result;
+            ViewModel.AssociatedAppointments = associatedAppointments;
+
+            return View(ViewModel);
 
 
         }
