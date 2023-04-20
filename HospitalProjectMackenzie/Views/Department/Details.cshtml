@@ -15,6 +15,14 @@
 <div>Site: <a href="/Site/Details/@Model.SelectedDepartment.SiteID">@Model.SelectedDepartment.SiteName</a></div>
 
 <div>
+    <h3>Rooms Associated for @Model.SelectedDepartment.DepartmentName:</h3>
+    @foreach (var room in Model.AssociatedRooms)
+    {
+        <a href="/Room/Details/@room.RoomID">@room.RoomName</a><br />
+    }
+</div>
+
+<div>
     <h3>Doctors Responsible for @Model.SelectedDepartment.DepartmentName:</h3>
     @foreach (var doctor in Model.ResponsibleDoctors)
     {

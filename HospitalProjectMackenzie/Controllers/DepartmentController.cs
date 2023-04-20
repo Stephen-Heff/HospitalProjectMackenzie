@@ -50,14 +50,21 @@ namespace HospitalProjectMackenzie.Controllers
 
             ViewModel.SelectedDepartment = SelectedDepartment;
 
-            //show associated doctors with this department
+            //show associated rooms with this department
+            url = "roomdata/listroomsfordepartment/" + id;
+            response = client.GetAsync(url).Result;
+            IEnumerable<RoomDto> AssociatedRooms = response.Content.ReadAsAsync<IEnumerable<RoomDto>>().Result;
+
+            ViewModel.AssociatedRooms = AssociatedRooms;
+
+            //show responsible doctors with this department
             url = "doctordata/listdoctorsfordepartment/" + id;
             response = client.GetAsync(url).Result;
             IEnumerable<DoctorDto> ResponsibleDoctors = response.Content.ReadAsAsync<IEnumerable<DoctorDto>>().Result;
 
             ViewModel.ResponsibleDoctors = ResponsibleDoctors;
 
-            //show associated volunteers with this department
+            //show responsible volunteers with this department
             url = "volunteerdata/listvolunteersfordepartment/" + id;
             response = client.GetAsync(url).Result;
             IEnumerable<VolunteerDto> ResponsibleVolunteers = response.Content.ReadAsAsync<IEnumerable<VolunteerDto>>().Result;
