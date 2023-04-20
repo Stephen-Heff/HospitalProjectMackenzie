@@ -20,7 +20,7 @@ namespace HospitalProjectMackenzie.Controllers
         static SiteController()
         {
             client = new HttpClient();
-            client.BaseAddress = new Uri("https://Chospitalproject-env.eba-infegs3m.us-east-2.elasticbeanstalk.com/api/");
+            client.BaseAddress = new Uri("http://Chospitalproject-env.eba-infegs3m.us-east-2.elasticbeanstalk.com/api/");
         }
 
         // GET: Site/List
