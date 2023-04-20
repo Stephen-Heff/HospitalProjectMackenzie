@@ -89,7 +89,7 @@ namespace HospitalProjectMackenzie.Controllers
             BillDto SelectedBill = response.Content.ReadAsAsync<BillDto>().Result;
             ViewModel.SelectedBill = SelectedBill;
 
-            url = "appointmentdata/listappointments" ;
+            url = "appointmentdata/listappointments/" ;
             response = client.GetAsync(url).Result;
             IEnumerable<AppointmentDto> appointments = response.Content.ReadAsAsync<IEnumerable<AppointmentDto>>().Result;
             ViewModel.AppointmentID = appointments;
