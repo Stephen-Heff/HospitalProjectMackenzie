@@ -19,8 +19,8 @@ namespace HospitalProjectMackenzie.Controllers
 
         static DoctorController()
         {
-            client = new HttpClient();
-            client.BaseAddress = new Uri("https://localhost:44388/api/");
+            client = new HttpClient();  
+            client.BaseAddress = new Uri("https://Chospitalproject-env.eba-infegs3m.us-east-2.elasticbeanstalk.com/api/");
         }
 
         // GET: Doctor/List

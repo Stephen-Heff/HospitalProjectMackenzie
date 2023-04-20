@@ -3,6 +3,7 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using varsity_w_auth.Models;
 
 namespace HospitalProjectMackenzie.Models
 {
@@ -22,7 +23,7 @@ namespace HospitalProjectMackenzie.Models
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
-            : base("DefaultConnection", throwIfV1Schema: false)
+            : base(AWSConnector.GetRDSConnectionString())
         {
         }
 

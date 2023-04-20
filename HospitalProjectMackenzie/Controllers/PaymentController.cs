@@ -19,7 +19,7 @@ namespace HospitalProjectMackenzie.Controllers
         static PaymentController()
         {
             client = new HttpClient();
-            client.BaseAddress = new Uri("https://localhost:44388/api/");
+            client.BaseAddress = new Uri("https://Chospitalproject-env.eba-infegs3m.us-east-2.elasticbeanstalk.com/api/");
         }
         // GET: Payment/List
         public ActionResult List()

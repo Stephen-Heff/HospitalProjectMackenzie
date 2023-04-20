@@ -20,7 +20,7 @@ namespace HospitalProjectMackenzie.Controllers
         static VolunteerController()
         {
             client = new HttpClient();
-            client.BaseAddress = new Uri("https://localhost:44388/api/");
+            client.BaseAddress = new Uri("https://Chospitalproject-env.eba-infegs3m.us-east-2.elasticbeanstalk.com/api/");
         }
 
         // GET: Volunteer/List

@@ -281,6 +281,7 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\AWSConnector.cs" />
     <Compile Include="Models\Room.cs" />
     <Compile Include="Models\Department.cs" />
     <Compile Include="Models\Amenity.cs" />
